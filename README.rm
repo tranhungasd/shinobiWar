@@ -7,7 +7,6 @@ git commit -m "update giờ + ngày"
 
 ---------------------------------------------------
 // Lệnh return
-// sua o giua
 git stash
 git log
 git reset <commit code>
@@ -29,5 +28,3 @@ git remote rm origin // xoá liên kết
 
 ----------------------------------------------------
 Lưu ý: Nhớ pull trước khi push
-
-sua o dong cuoi
