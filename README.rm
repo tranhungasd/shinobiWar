@@ -1,22 +1,30 @@
 git config --global user.name "FIRST_NAME LAST_NAME"
-Set your email address: git config --global user.email "MY_NAME@example.com"
+git config --global user.email "MY_NAME@example.com"
 git init
 git status
-git add <filename>
-git commit -m "comment"
+git add .
+git commit -m "update giờ + ngày"
+
+---------------------------------------------------
+// Lệnh return
 git stash
 git log
 git reset <commit code>
 git reflog
 ----------------------------------------------------
 Github
-New SSH key
-New a project
-git remote add origin <link>
+New SSH key //Lấy SSH
+New a project // Project này đang dùng
+
+git remote add origin git@github.com:linhbku99/shinobiWar.git
+git pull //Đồng bộ
 git remote -v
+git add .
 git push
-git remote rm origin (delete link *)
-git pull (*sync)
+
+----------------------------------------------------
+git remote rm origin // xoá liên kết
+
 
 ----------------------------------------------------
 Lưu ý: Nhớ pull trước khi push
