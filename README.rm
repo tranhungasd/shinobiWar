@@ -29,7 +29,11 @@ git remote rm origin // xoá liên kết
 ----------------------------------------------------
 Lưu ý: Nhớ pull trước khi push
 
+<<<<<<< HEAD
 
 
 
 sua lan 2
+=======
+sua lan 1
+>>>>>>> 703ad024f79411b7987c9c933aafa5a138d00335
