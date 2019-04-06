@@ -28,8 +28,3 @@ git remote rm origin // xoá liên kết
 
 ----------------------------------------------------
 Lưu ý: Nhớ pull trước khi push
-<<<<<<< HEAD
-sửa 2
-=======
-sửa,
->>>>>>> a679cfbd6b54f08e020c38ad738c601b85cd686f
