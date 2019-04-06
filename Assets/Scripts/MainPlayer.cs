@@ -7,29 +7,39 @@ public class MainPlayer : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private Vector2 direction;
+    public float jumpHeight;
     [SerializeField]
     private float speed = 4;
     private bool facingRight;
+    private bool grounded = true;
+    bool jump = false;
+    bool slide = false;
+    double jumptime = 1.0;
     void Start()
     {
         facingRight = true;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
+        jump = false;
+        slide = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //GetInput();
+        GetInput();
         float horizontal = Input.GetAxis("Horizontal");
         HandleMovement(horizontal);
-    }   
-    private void HandleMovement(float horizontal)
+    }
+        private void HandleMovement(float horizontal)
     {
         Flip(horizontal);
         myRigidbody2D.velocity = new Vector2(horizontal * speed, myRigidbody2D.velocity.y);
         Debug.Log(horizontal);
-        myAnimator.SetFloat("speed",Mathf.Abs(horizontal));
+        myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+        if(jump==true) myAnimator.SetBool("Jump", true);
+        if (jump == false) myAnimator.SetBool("Jump", false);
+        if (slide == false) myAnimator.SetBool("Slide", false);
     }
     private void Flip(float horizontal)
     {
@@ -47,10 +57,46 @@ public class MainPlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             direction += Vector2.left;
+            if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
+            {
+                StartCoroutine(SlideController());
+                slide = false;
+            }
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             direction += Vector2.right;
+            if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
+            {
+                StartCoroutine(SlideController());
+                slide = false;
+            }
+        }   
+        if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+            jump = true;
+            grounded = false;
+        }
+        
+    }
+    private IEnumerator SlideController()
+    {
+        float timePassed = 0;
+        while (timePassed < 1)
+        {
+            myAnimator.SetBool("Slide", true);
+            timePassed += Time.deltaTime;
+
+            yield return null;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D  other)
+    {
+        if (other.gameObject.tag == "ground")
+        {
+            grounded = true;
+            jump = false;
         }
     }
 }
