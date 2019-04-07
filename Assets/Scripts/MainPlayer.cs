@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MainPlayer : MonoBehaviour
 {
@@ -50,6 +51,18 @@ public class MainPlayer : MonoBehaviour
             facingRight = !facingRight;
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
+            Vector3 thePos = transform.localPosition;
+            if (Int32.Parse(theScale.x.ToString()) < 0)
+            {
+                thePos.x -= 1.9f;
+                Debug.Log(theScale.x.ToString() + " : " + thePos.x.ToString());
+            }
+            else
+            {
+                thePos.x += 1.9f;
+                Debug.Log(theScale.x.ToString() + " : " + thePos.x.ToString());
+            }
+            transform.localPosition = thePos;
             transform.localScale = theScale;
         }
     }
