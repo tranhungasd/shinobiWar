@@ -37157,9 +37157,10 @@ GameObject:
   - component: {fileID: 4474574567442882295}
   - component: {fileID: 592349326}
   - component: {fileID: 160413630822123966}
+  - component: {fileID: 160413630822123967}
   m_Layer: 0
   m_Name: MainPlayer
-  m_TagString: Untagged
+  m_TagString: MainPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37190,6 +37191,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.15, y: 0.63}
   m_EdgeRadius: 0
+--- !u!114 &160413630822123967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160413630822123965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc576888a1e87b4fa4dc6cb7563acce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 160413630822123965}
+  offset: {x: 0, y: 0, z: 0}
+  cam: {fileID: 377062874}
 --- !u!114 &870748083433841508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37600,4 +37616,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 7
-  speed: 6
+  speed: 10
