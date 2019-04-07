@@ -61,6 +61,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ButtonGUI\AbilitiesControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\EquipControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\MenuControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\MissionControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\ProfileControl.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\IAMainPlayer.cs" />
     <Compile Include="Assets\Scripts\MainPlayer.cs" />

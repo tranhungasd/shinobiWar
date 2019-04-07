@@ -35,7 +35,7 @@ public class MainPlayer : MonoBehaviour
     {
         Flip(horizontal);
         myRigidbody2D.velocity = new Vector2(horizontal * speed, myRigidbody2D.velocity.y);
-        Debug.Log(horizontal);
+        //Debug.Log(horizontal);
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
         if(jump==true) myAnimator.SetBool("Jump", true);
         if (jump == false) myAnimator.SetBool("Jump", false);
