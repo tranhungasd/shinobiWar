@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\ButtonGUI\MissionControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\NoticeControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\ProfileControl.cs" />
+    <Compile Include="Assets\Scripts\CameraPlayer.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\getKeyOptions.cs" />
     <Compile Include="Assets\Scripts\IAMainPlayer.cs" />
