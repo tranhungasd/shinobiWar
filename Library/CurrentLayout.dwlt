@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 679, y: 348}
-  m_MaxSize: {x: 18004, y: 14048}
+  m_MinSize: {x: 683, y: 348}
+  m_MaxSize: {x: 18008, y: 14048}
   vertical: 0
-  controlID: 125
+  controlID: 104
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 348}
   m_MaxSize: {x: 4002, y: 8048}
   vertical: 1
-  controlID: 54
+  controlID: 39
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,14 +190,14 @@ MonoBehaviour:
     height: 316
   m_MinSize: {x: 102, y: 124}
   m_MaxSize: {x: 4002, y: 4024}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
   - {fileID: 14}
   - {fileID: 13}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 3
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -217,8 +217,8 @@ MonoBehaviour:
     y: 0
     width: 270
     height: 947
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 224}
+  m_MaxSize: {x: 4004, y: 4024}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 20}
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 348}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 126
+  controlID: 105
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -334,9 +334,8 @@ MonoBehaviour:
     height: 296
   m_PersistentViewDataDictionary: {fileID: 0}
   m_ResetOnNextRepaint: 0
-  m_SelectedAssetPath: Assets/Ninja Files/Ninja PNG/1024 pixel/Sword/SNinja_redsword
-    1.png
-  m_SelectedSpriteRectGUID: c3963b0f106ea5744b3311c6eb6e1d3d
+  m_SelectedAssetPath: Assets/Ninja Files/Ninja_shuriken_1.png
+  m_SelectedSpriteRectGUID: d465fb5966275b74a96885266dbf457d
   m_LastUsedModuleTypeName: 
 --- !u!114 &14
 MonoBehaviour:
@@ -386,7 +385,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -449,9 +448,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -8.11731, y: 4.5838237, z: 0}
+    m_Target: {x: -3.5121562, y: 2.161324, z: 0}
     speed: 2
-    m_Value: {x: -8.11731, y: 4.5838237, z: 0}
+    m_Value: {x: -3.5121562, y: 2.161324, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -639,7 +638,6 @@ MonoBehaviour:
     - {fileID: 1107628569672542284, guid: 214308b7126e7c347a13d4b8b56627e8, type: 2}
     - {fileID: 1107584709050326080, guid: e24bb55b66c6dbe4e8b7caa7db745ee5, type: 2}
     - {fileID: 1102245598633432684, guid: c39c9abb86b8e3743b045c6f62ee1c6e, type: 2}
-    - {fileID: 1107068519044351254, guid: dc01066ab6432b94dab9b7fc6c745354, type: 2}
     - {fileID: 1107243542543693958, guid: 0518c7cc5284f6740884063b458e70c1, type: 2}
     m_ValueSerializationHelper:
     - e00: 1
@@ -786,22 +784,6 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.7157895
-      e01: 0
-      e02: 0
-      e03: -20.78949
-      e10: 0
-      e11: 0.7157895
-      e12: 0
-      e13: 67.6579
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 9100000, guid: c39c9abb86b8e3743b045c6f62ee1c6e,
     type: 2}
@@ -848,7 +830,7 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -7634
+  m_LastSelectedObjectID: -5390
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -908,8 +890,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 94140000
-      m_LastClickedID: 0
+      m_SelectedIDs: f2eaffff
+      m_LastClickedID: -5390
       m_ExpandedIDs: d4fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1140,7 +1122,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 16120000
     m_LastClickedID: 4630
-    m_ExpandedIDs: 00000000a0090000060b0000e60b0000380c00005e0c0000920d000088100000341100008a110000c21500004e160000
+    m_ExpandedIDs: 00000000a2090000fa0a0000ce0b00001c0c00003c0c0000580d000038100000de10000034110000fa13000046150000d2150000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1168,7 +1150,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a0090000060b0000e60b0000380c00005e0c0000920d000088100000341100008a110000c21500004e160000
+    m_ExpandedIDs: 00000000a2090000fa0a0000ce0b00001c0c00003c0c0000580d000038100000de10000034110000fa13000046150000d2150000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1292,20 +1274,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Ninja Files/Ninja PNG/1024 pixel/Sword
+    - Assets/Controllers
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Ninja Files/Ninja PNG/1024 pixel/Sword
+  - Assets/Controllers
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Unity\DCNG\DCNG
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 206}
-    m_SelectedIDs: 2c120000
-    m_LastClickedID: 4652
-    m_ExpandedIDs: 00000000a0090000060b0000e60b0000380c00005e0c0000920d000088100000341100008a11000060140000c21500004e16000000ca9a3b
+    scrollPos: {x: 0, y: 24.023895}
+    m_SelectedIDs: 140f0000
+    m_LastClickedID: 3860
+    m_ExpandedIDs: 00000000a2090000fa0a0000ce0b00001c0c00003c0c0000580d000038100000de10000034110000fa13000046150000d215000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1333,7 +1315,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a0090000060b0000e60b0000380c00005e0c0000920d000088100000341100008a110000c21500004e160000
+    m_ExpandedIDs: 00000000a2090000fa0a0000ce0b00001c0c00003c0c0000580d000038100000de10000034110000fa13000046150000d2150000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1360,19 +1342,19 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300003e2d00004e0b0000bc0a00002a0b0000a82e0000382df3ff584d0000bc0d00000c330000723d0000aa410000940a0000b00b00002a3f0000b80b0000b2090000580c0000d4310000be360000da0700000a100000d211000006340000204a0000e6550000505b0000480c0000245900000000000090140000ae3e00008c1000009e1e00008e1e0000a21e00009a1d00007c4b000044a00200de3d0000804b0000704b0000784b000026470000743e00008a3c00007e7a080084250000220c0000de4000009e320000ac320000aa0b0000340c0000220a0000a40a00003e110000d60e000012100000ce090000681000008c0b00007e0b0000220e00003a0b0000920b000034100000ac0c00003e100000ca100000c00f0000c40e0000060b0000f40d00002c0c0000fe0a0000e20d0000fe0e0000ca0d000090300000fc080000a80b0000f40b0000f41100005036000058360000cc700000fc0c0000f00e0000e4700000d00b000094130000d80a00007c0f0000842e0000c49d0000d29d0000e427000082a90000b6ab0000b2ab00005c260000d8280000ee2f0000f63200006c0c000066130000b40b00003c1200000c0a0000500a00002013000026100000cc150000d80c00003a0d00008c1600003c140000921000000c120000760f0000480a0000
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c62300003e2d00004e0b0000bc0a00002a0b0000a82e0000382df3ff584d0000bc0d00000c330000723d0000aa410000940a0000b00b00002a3f0000b80b0000b2090000580c0000d4310000be360000da0700000a100000d211000006340000204a0000e6550000505b0000480c0000245900000000000090140000ae3e00008c1000009e1e00008e1e0000a21e00009a1d00007c4b000044a00200de3d0000804b0000704b0000784b000026470000743e00008a3c00007e7a080084250000220c0000de4000009e320000ac320000aa0b0000340c0000220a0000a40a00003e110000d60e000012100000ce090000681000008c0b00007e0b0000220e00003a0b0000920b000034100000ac0c00003e100000ca100000c00f0000c40e0000060b0000f40d00002c0c0000fe0a0000e20d0000fe0e0000ca0d000090300000fc080000a80b0000f40b0000f41100005036000058360000cc700000fc0c0000f00e0000e4700000d00b000094130000d80a00007c0f0000842e0000c49d0000d29d0000e427000082a90000b6ab0000b2ab00005c260000d8280000ee2f0000f63200006c0c000066130000b40b00003c1200000c0a0000500a00002013000026100000cc150000d80c00003a0d00008c1600003c140000921000000c120000760f0000480a00009c3f0000a03f0000983f0000a43f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: SNinja_nosword_idle 2
-      m_OriginalName: SNinja_nosword_idle 2
+      m_Name: NinjaShuriken
+      m_OriginalName: NinjaShuriken
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 4672
+      m_UserData: -5402
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
