@@ -62,13 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ButtonGUI\AbilitiesControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\btnOfMenu.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\EquipControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\MenuControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\MissionControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\NoticeControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\ProfileControl.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\getKeyOptions.cs" />
     <Compile Include="Assets\Scripts\IAMainPlayer.cs" />
     <Compile Include="Assets\Scripts\MainPlayer.cs" />
+    <Compile Include="Assets\Scripts\Options.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
