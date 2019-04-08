@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: fbc2b45766e936a4981fd0bf5c33841c
+=======
+guid: 036476fa753c49e49ae9993885473b67
+>>>>>>> 1b0f60571fa8dd33776b4993cbf958d235238aa8
 TextureImporter:
   fileIDToRecycleName:
     21300000: WallClinging_0

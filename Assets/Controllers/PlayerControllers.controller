@@ -92,13 +92,22 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
   - m_Name: status
+=======
+    m_Controller: {fileID: 0}
+  - m_Name: wallcling
+>>>>>>> 1b0f60571fa8dd33776b4993cbf958d235238aa8
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
+=======
+    m_Controller: {fileID: 0}
+>>>>>>> 1b0f60571fa8dd33776b4993cbf958d235238aa8
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: MovePlayer
@@ -142,7 +151,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 0b4e617b5761b2d419628e1c6fdf50ab, type: 2}
-    m_Threshold: 0.11111112
+    m_Threshold: 0.083333336
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -150,7 +159,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 1bc939edf0a5c054c8854b1846544613, type: 2}
-    m_Threshold: 0.22222224
+    m_Threshold: 0.16666667
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -158,11 +167,19 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 5c507b36d2ee2b548ab67082060ed7df, type: 2}
-    m_Threshold: 0.33333334
+    m_Threshold: 0.25
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: run
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 90e37c9cf3fedaa41a23d2594e9a7014, type: 2}
+    m_Threshold: 0.33333334
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: wallcling
     m_Mirror: 0
   m_BlendParameter: change
   m_BlendParameterY: speed
