@@ -13,6 +13,7 @@ public class MainPlayer : MonoBehaviour
     private float speed = 4;
     private bool facingRight;
     private bool grounded = true;
+    private bool wallcling = false;
     bool jump = false;
     bool slide = false;
     double jumptime = 1.0;
@@ -69,11 +70,15 @@ public class MainPlayer : MonoBehaviour
     private void GetInput()
     {
         direction = Vector2.zero;
-        setIdle();
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if(!wallcling && grounded) setIdle();
+        if (Input.GetKey(KeyCode.LeftArrow) )
         {
+            
+            UnfreezePosition();        
             direction += Vector2.left;
-            setRun();
+            if (wallcling && facingRight) setJump();
+            if (grounded) setRun();
+
             if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
             {
                 StartCoroutine(SlideController());
@@ -82,18 +87,23 @@ public class MainPlayer : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
+            
+            UnfreezePosition();
             direction += Vector2.right;
-            setRun();
+            if (wallcling && !facingRight) setJump();
+            if (grounded) setRun();
             if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
             {
                 StartCoroutine(SlideController());
                 slide = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && (grounded || wallcling))
         {
+            UnfreezePosition();
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
             jump = true;
+            wallcling = false;
             grounded = false;
         }
 
@@ -114,9 +124,25 @@ public class MainPlayer : MonoBehaviour
     {
         if (other.gameObject.tag == "ground")
         {
+            wallcling = false;
             grounded = true;
             jump = false;
         }
+        if((other.gameObject.tag == "wall") && !grounded)
+        {
+            wallcling = true;
+            jump = false;
+            FreePosition();
+            setWallClinging();
+        }
+    }
+    private void FreePosition()
+    {
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+    private void UnfreezePosition()
+    {
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
     private void setCDN()
     {
@@ -124,6 +150,7 @@ public class MainPlayer : MonoBehaviour
         myAnimator.SetFloat("idle", 0);
         myAnimator.SetFloat("run", 0);
         myAnimator.SetFloat("jump", 0);
+        myAnimator.SetFloat("wallcling", 0);
     }
     private void setRun()
     {
@@ -131,6 +158,7 @@ public class MainPlayer : MonoBehaviour
         myAnimator.SetFloat("idle", 0);
         myAnimator.SetFloat("run", 1);
         myAnimator.SetFloat("jump", 0);
+        myAnimator.SetFloat("wallcling", 0);
     }
     private void setJump()
     {
@@ -145,5 +173,14 @@ public class MainPlayer : MonoBehaviour
         myAnimator.SetFloat("idle", 1);
         myAnimator.SetFloat("run", 0);
         myAnimator.SetFloat("jump", 0);
+        myAnimator.SetFloat("wallcling", 0);
+    }
+    private void setWallClinging ()
+    {
+        myAnimator.SetFloat("cdn", 0);
+        myAnimator.SetFloat("idle", 0);
+        myAnimator.SetFloat("run", 0);
+        myAnimator.SetFloat("jump", 0);
+        myAnimator.SetFloat("wallcling", 1);
     }
 }

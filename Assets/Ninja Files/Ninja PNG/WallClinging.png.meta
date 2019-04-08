@@ -3,6 +3,7 @@ guid: 269e13e2ed6f904429d5b802d1441391
 TextureImporter:
   fileIDToRecycleName:
     21300000: WallClinging_0
+    21300002: WallClinging_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -88,10 +89,30 @@ TextureImporter:
       name: WallClinging_0
       rect:
         serializedVersion: 2
-        x: 372
+        x: 371
         y: 56
         width: 253
         height: 394
+      alignment: 9
+      pivot: {x: 0.92556125, y: 0.06794373}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ea57b3c10b87f42b68b64da083df18
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WallClinging_1
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 64
+        width: 42
+        height: 89
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73ea57b3c10b87f42b68b64da083df18
+      spriteID: f1100d63ffe272d43a946913b36ef71f
       vertices: []
       indices: 
       edges: []
