@@ -6,8 +6,11 @@ Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+<<<<<<< HEAD
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 >>>>>>> 5011a1f24f9926469041cec3b0777f9d06361cb9
+=======
+>>>>>>> 0268aa94bb81b7a01e3cab7e1e5202c38ed1e14e

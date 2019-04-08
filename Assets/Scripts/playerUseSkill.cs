@@ -7,6 +7,7 @@ public class playerUseSkill : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private SpriteRenderer sp;
+    private bool isAtk = false;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -17,22 +18,21 @@ public class playerUseSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         GetInput();
     }
     private void GetInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !myAnimator.GetBool("attack"))
+        if (Input.GetKeyDown(KeyCode.Space) && !isAttack())
         {
             startAttack();
             StartCoroutine(AttackNormal());
         }
-        if (Input.GetKeyDown(KeyCode.Q) && !myAnimator.GetBool("attack"))
+        if (Input.GetKeyDown(KeyCode.Q) && !isAttack())
         {
             startAttack();
             StartCoroutine(Attack1());
         }
-        if (Input.GetKeyDown(KeyCode.E) && !myAnimator.GetBool("attack"))
+        if (Input.GetKeyDown(KeyCode.E) && !isAttack())
         {
             startAttack();
             StartCoroutine(Attack3());
@@ -43,22 +43,32 @@ public class playerUseSkill : MonoBehaviour
 
         sword();
         Debug.Log(sp.sprite.name.ToString());
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         stopAttack();
     }
     private IEnumerator Attack1()
     {
         shuriken();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         Debug.Log("attack");
         stopAttack();
     }
     private IEnumerator Attack3()
     {
         fire();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         Debug.Log("attack");
         stopAttack();
+    }
+    private bool isAttack()
+    {
+        if (isAtk)
+        {
+            return !isAtk;
+        }
+        isAtk = !isAtk;
+        myAnimator.SetBool("attack", isAtk);
+        return isAtk;
     }
     private void startAttack()
     {
@@ -70,7 +80,6 @@ public class playerUseSkill : MonoBehaviour
     {
         myAnimator.SetBool("attack", false);
         ActivateLayer("MovePlayer");
-        setIdle();
     } 
     public void ActivateLayer(string layerName)
     {
@@ -85,7 +94,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("sword", 0);
         myAnimator.SetFloat("shuriken", 0);
         myAnimator.SetFloat("fire", 0);
-        myAnimator.SetFloat("rasengan", 0);
+        myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
     }
     private void sword()
@@ -93,7 +102,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("sword", 1);
         myAnimator.SetFloat("shuriken", 0);
         myAnimator.SetFloat("fire", 0);
-        myAnimator.SetFloat("rasengan", 0);
+        myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
     }
     private void fire()
@@ -101,7 +110,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("sword", 0);
         myAnimator.SetFloat("shuriken", 0);
         myAnimator.SetFloat("fire", 1);
-        myAnimator.SetFloat("rasengan", 0);
+        myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
     }
     private void shuriken()
@@ -109,26 +118,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("sword", 0);
         myAnimator.SetFloat("shuriken", 1);
         myAnimator.SetFloat("fire", 0);
-        myAnimator.SetFloat("rasengan", 0);
+        myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
-    }
-    private void setIdle()
-    {
-        myAnimator.SetFloat("cdn", 0);
-        myAnimator.SetFloat("idle", 1);
-        myAnimator.SetFloat("run", 0);
-        myAnimator.SetFloat("jump", 0);
-    }
-    public IEnumerator SkillFire()
-    {
-        myAnimator.SetFloat("sword", 0);
-        myAnimator.SetFloat("shuriken", 0);
-        myAnimator.SetFloat("rasengan", 0);
-        myAnimator.SetFloat("resengan2", 0);
-        for (int i = 0; i < 10; i++)
-        {
-            yield return new WaitForSeconds(0.1f);
-            myAnimator.SetFloat("fire", i / 10);
-        }
     }
 }
