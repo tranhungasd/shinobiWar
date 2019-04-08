@@ -37,11 +37,6 @@ public class MainPlayer : MonoBehaviour
     {
         Flip(horizontal);
         myRigidbody2D.velocity = new Vector2(horizontal * speed, myRigidbody2D.velocity.y);
-        //Debug.Log(horizontal);
-        myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
-        //if(jump==true) myAnimator.SetBool("Jump", true);
-        //if (jump == false) myAnimator.SetBool("Jump", false);
-        //if (slide == false) myAnimator.SetBool("Slide", false);
         if (jump == true) setJump();
 
     }
@@ -49,6 +44,7 @@ public class MainPlayer : MonoBehaviour
     {
         if ((horizontal > 0 && !facingRight) || (horizontal < 0 && facingRight))
         {
+            //myAnimator.SetBool("move", true);
             facingRight = !facingRight;
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
@@ -70,7 +66,8 @@ public class MainPlayer : MonoBehaviour
     private void GetInput()
     {
         direction = Vector2.zero;
-        if(!wallcling && grounded) setIdle();
+        //myAnimator.SetBool("move", false);
+        if (!wallcling && grounded) setIdle();
         if (Input.GetKey(KeyCode.LeftArrow) )
         {
             
@@ -147,7 +144,6 @@ public class MainPlayer : MonoBehaviour
     private void setCDN()
     {
         myAnimator.SetFloat("cdn", 1);
-        myAnimator.SetFloat("idle", 0);
         myAnimator.SetFloat("run", 0);
         myAnimator.SetFloat("jump", 0);
         myAnimator.SetFloat("wallcling", 0);
@@ -155,7 +151,6 @@ public class MainPlayer : MonoBehaviour
     private void setRun()
     {
         myAnimator.SetFloat("cdn", 0);
-        myAnimator.SetFloat("idle", 0);
         myAnimator.SetFloat("run", 1);
         myAnimator.SetFloat("jump", 0);
         myAnimator.SetFloat("wallcling", 0);
@@ -163,14 +158,13 @@ public class MainPlayer : MonoBehaviour
     private void setJump()
     {
         myAnimator.SetFloat("cdn", 0);
-        myAnimator.SetFloat("idle", 0);
         myAnimator.SetFloat("run", 0);
         myAnimator.SetFloat("jump", 1);
+        myAnimator.SetFloat("wallcling", 0);
     }
     private void setIdle()
     {
         myAnimator.SetFloat("cdn", 0);
-        myAnimator.SetFloat("idle", 1);
         myAnimator.SetFloat("run", 0);
         myAnimator.SetFloat("jump", 0);
         myAnimator.SetFloat("wallcling", 0);
@@ -178,7 +172,6 @@ public class MainPlayer : MonoBehaviour
     private void setWallClinging ()
     {
         myAnimator.SetFloat("cdn", 0);
-        myAnimator.SetFloat("idle", 0);
         myAnimator.SetFloat("run", 0);
         myAnimator.SetFloat("jump", 0);
         myAnimator.SetFloat("wallcling", 1);
