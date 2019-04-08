@@ -67,24 +67,24 @@ public class MainPlayer : MonoBehaviour
     {
         direction = Vector2.zero;
         //myAnimator.SetBool("move", false);
-        if (!wallcling && grounded) setIdle();
+        if (!wallcling && grounded) myAnimator.SetBool("move", false);
         if (Input.GetKey(KeyCode.LeftArrow) )
         {
-            
+            myAnimator.SetBool("move", true);
             UnfreezePosition();        
             direction += Vector2.left;
             if (wallcling && facingRight) setJump();
             if (grounded) setRun();
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
-            {
+            {            
                 StartCoroutine(SlideController());
                 slide = false;
             }
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            
+            myAnimator.SetBool("move", true);
             UnfreezePosition();
             direction += Vector2.right;
             if (wallcling && !facingRight) setJump();
@@ -97,6 +97,7 @@ public class MainPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && (grounded || wallcling))
         {
+            myAnimator.SetBool("move", true);
             UnfreezePosition();
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
             jump = true;
@@ -111,6 +112,7 @@ public class MainPlayer : MonoBehaviour
         while (timePassed < 1)
         {
             //myAnimator.SetBool("Slide", true);
+            if (Input.GetKeyDown(KeyCode.UpArrow)) break;
             setCDN();
             timePassed += Time.deltaTime;
 
