@@ -22,17 +22,17 @@ public class playerUseSkill : MonoBehaviour
     }
     private void GetInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isAttack())
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.Space) && !isAttack())
         {
             startAttack();
             StartCoroutine(AttackNormal());
         }
-        if (Input.GetKeyDown(KeyCode.Q) && !isAttack())
+        if (Input.GetKeyDown(KeyCode.Q) && Input.GetKey(KeyCode.Q) && !isAttack())
         {
             startAttack();
             StartCoroutine(Attack1());
         }
-        if (Input.GetKeyDown(KeyCode.E) && !isAttack())
+        if (Input.GetKeyDown(KeyCode.E) && Input.GetKey(KeyCode.E) && !isAttack())
         {
             startAttack();
             StartCoroutine(Attack3());
@@ -64,6 +64,7 @@ public class playerUseSkill : MonoBehaviour
     {
         if (isAtk)
         {
+            Debug.Log("wait...");
             return !isAtk;
         }
         isAtk = !isAtk;
