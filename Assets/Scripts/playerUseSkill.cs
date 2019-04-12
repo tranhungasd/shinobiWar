@@ -11,12 +11,18 @@ public class playerUseSkill : MonoBehaviour
     private SpriteRenderer sp;
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
+<<<<<<< HEAD
     public bool isAtk = false;
     GameObject objPlayer;
     ParameterPlayer paraPlayer;
     [SerializeField]
     private GameObject[] prefabsSpell;
     private GameObject objEffSpell;
+=======
+    public AudioSource buttonSpaceAudio;
+    public AudioSource buttonQAudio;
+    private bool isAtk = false;
+>>>>>>> a256868d185e354d1a01f1a56bea0898d4c1124e
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -44,16 +50,20 @@ public class playerUseSkill : MonoBehaviour
         paraPlayer = objPlayer.GetComponent<ParameterPlayer>();
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.Space) && paraPlayer.waitRecSkill[0] == false)
         {
+            Debug.Log("sdfsadf");
+            buttonSpaceAudio.Play();
             startAttack();
             StartCoroutine(AttackNormal());
         }
         if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && paraPlayer.waitRecSkill[1] == false)
         {
+            buttonQAudio.Play();
             startAttack();
             StartCoroutine(Attack1());
         }
         if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && paraPlayer.waitRecSkill[3] == false)
         {
+            
             startAttack();
             StartCoroutine(Attack3());
         }
