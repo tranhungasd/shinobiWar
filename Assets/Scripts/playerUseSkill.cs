@@ -16,9 +16,10 @@ public class playerUseSkill : MonoBehaviour
     ParameterPlayer paraPlayer;
     [SerializeField]
     private GameObject[] prefabsSpell;
-    private GameObject objEffSpell;
     public AudioSource buttonSpaceAudio;
     public AudioSource buttonQAudio;
+    [SerializeField]
+    private Transform exitPoint;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -46,7 +47,6 @@ public class playerUseSkill : MonoBehaviour
         paraPlayer = objPlayer.GetComponent<ParameterPlayer>();
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.Space) && paraPlayer.waitRecSkill[0] == false)
         {
-            Debug.Log("sdfsadf");
             buttonSpaceAudio.Play();
             startAttack();
             StartCoroutine(AttackNormal());
@@ -75,8 +75,11 @@ public class playerUseSkill : MonoBehaviour
     {
         shuriken();
         paraPlayer.skill = 1;
-        objEffSpell = Instantiate(prefabsSpell[0], new Vector3(5.0F, 0, 0), Quaternion.identity);
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.3f);
+        GameObject objEffSpell = Instantiate(prefabsSpell[0], exitPoint.position, Quaternion.identity);
+        Rigidbody2D rgbSpell = objEffSpell.GetComponent<Rigidbody2D>();
+        rgbSpell.velocity = new Vector2(objPlayer.transform.localScale.x * 20f, rgbSpell.velocity.y);
+        yield return new WaitForSeconds(0.4f);
         Debug.Log("attack");
         stopAttack();
     }
@@ -84,7 +87,14 @@ public class playerUseSkill : MonoBehaviour
     {
         fire();
         paraPlayer.skill = 3;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);
+        GameObject objEffSpell = Instantiate(prefabsSpell[2], exitPoint.position, Quaternion.identity);
+        Vector3 theScale = objEffSpell.transform.localScale;
+        theScale.x = objPlayer.transform.localScale.x * 2.6286f;
+        objEffSpell.transform.localScale = theScale;
+        Rigidbody2D rgbSpell = objEffSpell.GetComponent<Rigidbody2D>();
+        rgbSpell.velocity = new Vector2(objPlayer.transform.localScale.x * 20f, rgbSpell.velocity.y);
+        yield return new WaitForSeconds(0.5f);
         Debug.Log("attack");
         stopAttack();
     }
