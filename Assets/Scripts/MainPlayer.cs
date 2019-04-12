@@ -132,11 +132,11 @@ public class MainPlayer : MonoBehaviour
         {
             wallcling = true;
             jump = false;
-            FreePosition();
+            FreezePosition();
             setWallClinging();
         }
     }
-    private void FreePosition()
+    private void FreezePosition()
     {
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
     }
