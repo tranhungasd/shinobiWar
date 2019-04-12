@@ -32,6 +32,7 @@ public class MainPlayer : MonoBehaviour
         GetInput();
         float horizontal = Input.GetAxis("Horizontal");
         HandleMovement(horizontal);
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     private void HandleMovement(float horizontal)
     {
@@ -68,16 +69,16 @@ public class MainPlayer : MonoBehaviour
         direction = Vector2.zero;
         //myAnimator.SetBool("move", false);
         if (!wallcling && grounded) myAnimator.SetBool("move", false);
-        if (Input.GetKey(KeyCode.LeftArrow) )
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             myAnimator.SetBool("move", true);
-            UnfreezePosition();        
+            UnfreezePosition();
             direction += Vector2.left;
             if (wallcling && facingRight) setJump();
             if (grounded) setRun();
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
-            {            
+            {
                 StartCoroutine(SlideController());
                 slide = false;
             }

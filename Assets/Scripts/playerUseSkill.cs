@@ -11,12 +11,19 @@ public class playerUseSkill : MonoBehaviour
     private SpriteRenderer sp;
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
-    private bool isAtk = false;
+    public bool isAtk = false;
+    GameObject objPlayer;
+    ParameterPlayer paraPlayer;
+    [SerializeField]
+    private GameObject[] prefabsSpell;
+    private GameObject objEffSpell;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
+        objPlayer = GameObject.Find("MainPlayer");
+        paraPlayer = objPlayer.GetComponent<ParameterPlayer>();
     }
 
     // Update is called once per frame
@@ -34,17 +41,18 @@ public class playerUseSkill : MonoBehaviour
     }
     private void GetInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.Space) && !isAttack())
+        paraPlayer = objPlayer.GetComponent<ParameterPlayer>();
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.Space) && paraPlayer.waitRecSkill[0] == false)
         {
             startAttack();
             StartCoroutine(AttackNormal());
         }
-        if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && !isAttack())
+        if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && paraPlayer.waitRecSkill[1] == false)
         {
             startAttack();
             StartCoroutine(Attack1());
         }
-        if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && !isAttack())
+        if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && paraPlayer.waitRecSkill[3] == false)
         {
             startAttack();
             StartCoroutine(Attack3());
@@ -52,20 +60,16 @@ public class playerUseSkill : MonoBehaviour
     }
     private IEnumerator AttackNormal()
     {
-
         sword();
-        GameObject objPlayer = GameObject.Find("MainPlayer");
-        ParameterPlayer setSkill = objPlayer.GetComponent<ParameterPlayer>();
-        setSkill.skill = 0;
-        yield return new WaitForSeconds(0.7f);
+        paraPlayer.skill = 0;
+        yield return new WaitForSeconds(0.5f);
         stopAttack();
     }
     private IEnumerator Attack1()
     {
         shuriken();
-        GameObject objPlayer = GameObject.Find("MainPlayer");
-        ParameterPlayer setSkill = objPlayer.GetComponent<ParameterPlayer>();
-        setSkill.skill = 1;
+        paraPlayer.skill = 1;
+        objEffSpell = Instantiate(prefabsSpell[0], new Vector3(5.0F, 0, 0), Quaternion.identity);
         yield return new WaitForSeconds(0.7f);
         Debug.Log("attack");
         stopAttack();
@@ -73,32 +77,21 @@ public class playerUseSkill : MonoBehaviour
     private IEnumerator Attack3()
     {
         fire();
-        GameObject objPlayer = GameObject.Find("MainPlayer");
-        ParameterPlayer setSkill = objPlayer.GetComponent<ParameterPlayer>();
-        setSkill.skill = 3;
-        yield return new WaitForSeconds(0.7f);
+        paraPlayer.skill = 3;
+        yield return new WaitForSeconds(1f);
         Debug.Log("attack");
         stopAttack();
     }
-    private bool isAttack()
-    {
-        if (isAtk)
-        {
-            Debug.Log("wait...");
-            return !isAtk;
-        }
-        isAtk = !isAtk;
-        myAnimator.SetBool("attack", isAtk);
-        return isAtk;
-    }
     private void startAttack()
     {
+        isAtk = true;
         resetAttack();
         ActivateLayer("AttackPlayer");
         myAnimator.SetBool("attack", true);
     }
     private void stopAttack()
     {
+        isAtk = false;
         myAnimator.SetBool("attack", false);
         ActivateLayer("MovePlayer");
     } 

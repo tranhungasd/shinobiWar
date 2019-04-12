@@ -15,7 +15,10 @@ public class ParameterPlayer : MonoBehaviour
     private Stat health;
     [SerializeField]
     private Stat exp;
+    [SerializeField]
+    private Stat[] statSkill = new Stat[6];
     public int skill { get; set; }
+    public bool[] waitRecSkill;
     private class tagParameter
     {
         public string[] name = new string[20];
@@ -30,6 +33,10 @@ public class ParameterPlayer : MonoBehaviour
         ReadAll();
         health.Initialized(getCur("HP"), getTotal("HP"));
         exp.Initialized(getCur("EXP"), getTotal("EXP"));
+        for (int i = 0; i < 6; i++)
+        {
+            statSkill[i].Initialized(getCur("TIME" + i.ToString()), getTotal("TIME" + i.ToString()));
+        }
     }
     void Update()
     {
@@ -55,8 +62,20 @@ public class ParameterPlayer : MonoBehaviour
             return;
         }
         Debug.Log("skill " + skill);
+        StartCoroutine(waitSkill(skill));
         skill = -1;
     } 
+    IEnumerator waitSkill(int stt)
+    {
+        waitRecSkill[stt] = true;
+        float cur = getCur("TIME" + stt.ToString()) * 10;
+        for (float i = cur; i >= 0; i--)
+        {
+            statSkill[stt].Initialized(i, getTotal("TIME" + stt.ToString()) * 10);
+            yield return new WaitForSeconds(0.1f);
+        }
+        waitRecSkill[stt] = false;
+    }
     private void ReadAll()
     {
         input = tmpTxt.text;
@@ -71,9 +90,9 @@ public class ParameterPlayer : MonoBehaviour
                 string pat = "/";
                 string[] tags = Regex.Split(m, pat);
                 line.name[i] = tags[0];
-                //Debug.Log(tags[1]);
                 line.current[i] = float.Parse(tags[1]);
                 line.total[i] = float.Parse(tags[2]);
+                //Debug.Log(tags[1]);
                 //Debug.Log(line.count + "-" + line.name[i] + "-" + line.current[i].ToString() + "-" + line.total[i].ToString() + "\n");
                 i++;
             }

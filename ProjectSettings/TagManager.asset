@@ -9,6 +9,12 @@ TagManager:
   - EyesEquip
   - ground
   - wall
+  - skill0
+  - skill1
+  - skill2
+  - skill3
+  - skill4
+  - skill5
   layers:
   - Default
   - TransparentFX
