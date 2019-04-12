@@ -17,6 +17,8 @@ public class playerUseSkill : MonoBehaviour
     [SerializeField]
     private GameObject[] prefabsSpell;
     private GameObject objEffSpell;
+    public AudioSource buttonSpaceAudio;
+    public AudioSource buttonQAudio;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -44,16 +46,20 @@ public class playerUseSkill : MonoBehaviour
         paraPlayer = objPlayer.GetComponent<ParameterPlayer>();
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.Space) && paraPlayer.waitRecSkill[0] == false)
         {
+            Debug.Log("sdfsadf");
+            buttonSpaceAudio.Play();
             startAttack();
             StartCoroutine(AttackNormal());
         }
         if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && paraPlayer.waitRecSkill[1] == false)
         {
+            buttonQAudio.Play();
             startAttack();
             StartCoroutine(Attack1());
         }
         if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && paraPlayer.waitRecSkill[3] == false)
         {
+            
             startAttack();
             StartCoroutine(Attack3());
         }
