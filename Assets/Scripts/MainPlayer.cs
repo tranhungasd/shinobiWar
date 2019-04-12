@@ -14,6 +14,9 @@ public class MainPlayer : MonoBehaviour
     private bool facingRight;
     private bool grounded = true;
     private bool wallcling = false;
+    public AudioSource runAudio;
+    public AudioSource jumpAudio;
+    public AudioSource downButtonAudio;
     bool jump = false;
     bool slide = false;
     double jumptime = 1.0;
@@ -71,6 +74,7 @@ public class MainPlayer : MonoBehaviour
         if (!wallcling && grounded) myAnimator.SetBool("move", false);
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            runAudio.Play();
             myAnimator.SetBool("move", true);
             UnfreezePosition();
             direction += Vector2.left;
@@ -79,12 +83,14 @@ public class MainPlayer : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
             {
+                downButtonAudio.Play();
                 StartCoroutine(SlideController());
                 slide = false;
             }
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
+            runAudio.Play();
             myAnimator.SetBool("move", true);
             UnfreezePosition();
             direction += Vector2.right;
@@ -92,12 +98,14 @@ public class MainPlayer : MonoBehaviour
             if (grounded) setRun();
             if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
             {
+                downButtonAudio.Play();
                 StartCoroutine(SlideController());
                 slide = false;
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && (grounded || wallcling))
         {
+            jumpAudio.Play();
             myAnimator.SetBool("move", true);
             UnfreezePosition();
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
