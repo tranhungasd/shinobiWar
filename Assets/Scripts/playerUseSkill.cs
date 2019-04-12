@@ -11,6 +11,8 @@ public class playerUseSkill : MonoBehaviour
     private SpriteRenderer sp;
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
+    public AudioSource buttonSpaceAudio;
+    public AudioSource buttonQAudio;
     private bool isAtk = false;
     void Start()
     {
@@ -36,16 +38,20 @@ public class playerUseSkill : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.Space) && !isAttack())
         {
+            Debug.Log("sdfsadf");
+            buttonSpaceAudio.Play();
             startAttack();
             StartCoroutine(AttackNormal());
         }
         if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && !isAttack())
         {
+            buttonQAudio.Play();
             startAttack();
             StartCoroutine(Attack1());
         }
         if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && !isAttack())
         {
+            
             startAttack();
             StartCoroutine(Attack3());
         }

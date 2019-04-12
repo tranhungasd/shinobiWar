@@ -8,6 +8,7 @@ public class MenuControl : MonoBehaviour
     //public GameObject quitObj;
     // Start is called before the first frame update
     private bool statusObj = false; //False = Hide, True = Show 
+    public AudioSource clickAudio;
     void Start()
     {
 
@@ -23,6 +24,7 @@ public class MenuControl : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape) && Input.GetKeyDown(KeyCode.Escape))
         {
+            clickAudio.Play();
             statusObj = !statusObj;
             menuObj.SetActive(statusObj);
             //Debug.Log(statusObj);
@@ -30,11 +32,13 @@ public class MenuControl : MonoBehaviour
     }
     public void quitClick(GameObject gO)
     {
+        clickAudio.Play();
         statusObj = false;
         menuObj.SetActive(statusObj);
     }
     public void escClick(GameObject gO)
     {
+        clickAudio.Play();
         statusObj = !statusObj;
         menuObj.SetActive(statusObj);
     }
