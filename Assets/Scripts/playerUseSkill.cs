@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class playerUseSkill : MonoBehaviour
@@ -7,6 +9,8 @@ public class playerUseSkill : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private SpriteRenderer sp;
+    public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
+    private KeyCode[] keycodes = new KeyCode[5];
     private bool isAtk = false;
     void Start()
     {
@@ -18,7 +22,15 @@ public class playerUseSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ReadOptions();
         GetInput();
+    }
+    private void ReadOptions()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            keycodes[i] = (KeyCode)Enum.Parse(typeof(KeyCode), keys[i].text);
+        }
     }
     private void GetInput()
     {
@@ -27,12 +39,12 @@ public class playerUseSkill : MonoBehaviour
             startAttack();
             StartCoroutine(AttackNormal());
         }
-        if (Input.GetKeyDown(KeyCode.Q) && Input.GetKey(KeyCode.Q) && !isAttack())
+        if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && !isAttack())
         {
             startAttack();
             StartCoroutine(Attack1());
         }
-        if (Input.GetKeyDown(KeyCode.E) && Input.GetKey(KeyCode.E) && !isAttack())
+        if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && !isAttack())
         {
             startAttack();
             StartCoroutine(Attack3());
@@ -42,13 +54,18 @@ public class playerUseSkill : MonoBehaviour
     {
 
         sword();
-        Debug.Log(sp.sprite.name.ToString());
+        GameObject objPlayer = GameObject.Find("MainPlayer");
+        ParameterPlayer setSkill = objPlayer.GetComponent<ParameterPlayer>();
+        setSkill.skill = 0;
         yield return new WaitForSeconds(0.7f);
         stopAttack();
     }
     private IEnumerator Attack1()
     {
         shuriken();
+        GameObject objPlayer = GameObject.Find("MainPlayer");
+        ParameterPlayer setSkill = objPlayer.GetComponent<ParameterPlayer>();
+        setSkill.skill = 1;
         yield return new WaitForSeconds(0.7f);
         Debug.Log("attack");
         stopAttack();
@@ -56,6 +73,9 @@ public class playerUseSkill : MonoBehaviour
     private IEnumerator Attack3()
     {
         fire();
+        GameObject objPlayer = GameObject.Find("MainPlayer");
+        ParameterPlayer setSkill = objPlayer.GetComponent<ParameterPlayer>();
+        setSkill.skill = 3;
         yield return new WaitForSeconds(0.7f);
         Debug.Log("attack");
         stopAttack();

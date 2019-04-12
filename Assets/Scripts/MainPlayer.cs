@@ -52,12 +52,12 @@ public class MainPlayer : MonoBehaviour
             if (Int32.Parse(theScale.x.ToString()) < 0)
             {
                 thePos.x -= 1.9f;
-                Debug.Log(theScale.x.ToString() + " : " + thePos.x.ToString());
+                //Debug.Log(theScale.x.ToString() + " : " + thePos.x.ToString());
             }
             else
             {
                 thePos.x += 1.9f;
-                Debug.Log(theScale.x.ToString() + " : " + thePos.x.ToString());
+                //Debug.Log(theScale.x.ToString() + " : " + thePos.x.ToString());
             }
             transform.localPosition = thePos;
             transform.localScale = theScale;
