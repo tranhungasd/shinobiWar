@@ -105,13 +105,10 @@ public class MainPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && (grounded || wallcling))
         {
-<<<<<<< HEAD
-=======
             jumpAudio.Play();
             myAnimator.SetBool("move", true);
             UnfreezePosition();
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
->>>>>>> 30a7e74f9976ddbf6da08667e6651cc067e1a3bd
             jump = true;
             wallcling = false;
             grounded = false;
