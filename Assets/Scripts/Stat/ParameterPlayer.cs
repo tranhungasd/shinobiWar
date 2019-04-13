@@ -76,7 +76,7 @@ public class ParameterPlayer : MonoBehaviour
         }
         waitRecSkill[stt] = false;
     }
-    private void ReadAll()
+    private void ReadAll()  
     {
         input = tmpTxt.text;
         string pattern = "\n";
@@ -92,7 +92,7 @@ public class ParameterPlayer : MonoBehaviour
                 line.name[i] = tags[0];
                 line.current[i] = float.Parse(tags[1]);
                 line.total[i] = float.Parse(tags[2]);
-                //Debug.Log(tags[1]);
+                //Debug.Log(tags[1] );
                 //Debug.Log(line.count + "-" + line.name[i] + "-" + line.current[i].ToString() + "-" + line.total[i].ToString() + "\n");
                 i++;
             }

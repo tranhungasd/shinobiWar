@@ -98,12 +98,13 @@ public class MainPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && (grounded || wallcling))
         {
-            myAnimator.SetBool("move", true);
-            UnfreezePosition();
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
             jump = true;
             wallcling = false;
             grounded = false;
+            myAnimator.SetBool("move", true);
+            UnfreezePosition();
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+            
         }
 
     }
