@@ -18,6 +18,10 @@ public class playerUseSkill : MonoBehaviour
     private GameObject[] prefabsSpell;
     public AudioSource buttonSpaceAudio;
     public AudioSource buttonQAudio;
+    public AudioSource buttonWAudio;
+    public AudioSource buttonEAudio;
+    public AudioSource buttonRAudio;
+    public AudioSource buttonTAudio;
     [SerializeField]
     private Transform exitPoint;
     void Start()
@@ -57,12 +61,26 @@ public class playerUseSkill : MonoBehaviour
             startAttack();
             StartCoroutine(Attack1());
         }
+        if (Input.GetKeyDown(keycodes[1]) && Input.GetKey(keycodes[1]))
+        {
+            Debug.Log("adsfsad");
+            buttonWAudio.Play();
+        }
         if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && paraPlayer.waitRecSkill[3] == false)
         {
-            
+            buttonEAudio.Play();
             startAttack();
             StartCoroutine(Attack3());
         }
+        if (Input.GetKeyDown(keycodes[3]) && Input.GetKey(keycodes[3]))
+        {
+            buttonRAudio.Play();
+        }
+        if (Input.GetKeyDown(keycodes[4]) && Input.GetKey(keycodes[4]))
+        {
+            buttonTAudio.Play();
+        }
+
     }
     private IEnumerator AttackNormal()
     {
