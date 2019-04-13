@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\MainPlayer.cs" />
      <Compile Include="Assets\Scripts\Options.cs" />
      <Compile Include="Assets\Scripts\playerUseSkill.cs" />
+     <Compile Include="Assets\Scripts\ShurikenScript.cs" />
      <Compile Include="Assets\Scripts\Stat\ParameterPlayer.cs" />
      <Compile Include="Assets\Scripts\Stat\Stat.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
