@@ -119,6 +119,10 @@ public class MainPlayer : MonoBehaviour
             jump = true;
             wallcling = false;
             grounded = false;
+            myAnimator.SetBool("move", true);
+            UnfreezePosition();
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+            
         }
 
     }
@@ -147,11 +151,11 @@ public class MainPlayer : MonoBehaviour
         {
             wallcling = true;
             jump = false;
-            FreePosition();
+            FreezePosition();
             setWallClinging();
         }
     }
-    private void FreePosition()
+    private void FreezePosition()
     {
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
     }
