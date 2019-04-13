@@ -18,6 +18,10 @@ public class playerUseSkill : MonoBehaviour
     private GameObject[] prefabsSpell;
     public AudioSource buttonSpaceAudio;
     public AudioSource buttonQAudio;
+    public AudioSource buttonWAudio;
+    public AudioSource buttonEAudio;
+    public AudioSource buttonRAudio;
+    public AudioSource buttonTAudio;
     [SerializeField]
     private Transform exitPoint;
     void Start()
@@ -33,7 +37,10 @@ public class playerUseSkill : MonoBehaviour
     void Update()
     {
         ReadOptions();
-        GetInput();
+        if (!isAtk)
+        {
+            GetInput();
+        }
     }
     private void ReadOptions()
     {
@@ -57,12 +64,28 @@ public class playerUseSkill : MonoBehaviour
             startAttack();
             StartCoroutine(Attack1());
         }
+        if (Input.GetKeyDown(keycodes[1]) && Input.GetKey(keycodes[1]) && paraPlayer.waitRecSkill[2] == false)
+        {
+            Debug.Log("adsfsad");
+            buttonWAudio.Play();
+        }
         if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && paraPlayer.waitRecSkill[3] == false)
         {
-            
+            buttonEAudio.Play();
             startAttack();
             StartCoroutine(Attack3());
         }
+        if (Input.GetKeyDown(keycodes[3]) && Input.GetKey(keycodes[3]) && paraPlayer.waitRecSkill[4] == false)
+        {
+            buttonRAudio.Play();
+            startAttack();
+            StartCoroutine(Teleport());
+        }
+        if (Input.GetKeyDown(keycodes[4]) && Input.GetKey(keycodes[4]) && paraPlayer.waitRecSkill[5] == false)
+        {
+            buttonTAudio.Play();
+        }
+
     }
     private IEnumerator AttackNormal()
     {
@@ -95,6 +118,23 @@ public class playerUseSkill : MonoBehaviour
         Rigidbody2D rgbSpell = objEffSpell.GetComponent<Rigidbody2D>();
         rgbSpell.velocity = new Vector2(objPlayer.transform.localScale.x * 20f, rgbSpell.velocity.y);
         yield return new WaitForSeconds(0.5f);
+        Debug.Log("attack");
+        stopAttack();
+    }
+    private IEnumerator Teleport()
+    {
+        paraPlayer.skill = 4;
+        GameObject objEffSpell = Instantiate(prefabsSpell[3], exitPoint.position, Quaternion.identity);
+        Vector3 theScale = objPlayer.transform.localScale;
+        Vector3 thePos = objPlayer.transform.localPosition;
+        Vector3 theScaleSpell = objEffSpell.transform.localScale;
+        theScaleSpell.x = theScale.x;
+        thePos.x = thePos.x + theScale.x * 15f;
+        Debug.Log(thePos.x.ToString() + " - " + theScale.x.ToString());
+        objPlayer.transform.localPosition = thePos;
+        objEffSpell.transform.localScale = theScaleSpell;
+        yield return new WaitForSeconds(0.2f);
+        Destroy(objEffSpell);
         Debug.Log("attack");
         stopAttack();
     }
