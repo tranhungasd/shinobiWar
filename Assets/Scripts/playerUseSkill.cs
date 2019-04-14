@@ -13,7 +13,6 @@ public class playerUseSkill : MonoBehaviour
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
     public bool isAtk = false;
-    public bool stopRasengan = false;
     
     GameObject objPlayer;
     ParameterPlayer paraPlayer;
@@ -157,8 +156,9 @@ public class playerUseSkill : MonoBehaviour
         mainPlayer.velocity = Vector2.zero;
         rasengan1();
         paraPlayer.skill = 5;
-        GameObject objEffSpell = Instantiate(prefabsSpell[4], ultiPoint.position, Quaternion.identity);
         // create rasengan
+        GameObject objEffSpell = Instantiate(prefabsSpell[4], ultiPoint.position, Quaternion.identity);
+        objEffSpell.GetComponent<Collider2D>().enabled = !objEffSpell.GetComponent<Collider2D>().enabled;
         Rigidbody2D spell = objEffSpell.GetComponent<Rigidbody2D>();
         Vector3 theScale = objPlayer.transform.localScale;
         Vector3 theScaleSpell = objEffSpell.transform.localScale;
@@ -172,6 +172,7 @@ public class playerUseSkill : MonoBehaviour
         GameObject[] shadow = new GameObject[10];
         // rasengan đi
         // create shadow
+        objEffSpell.GetComponent<Collider2D>().enabled = !objEffSpell.GetComponent<Collider2D>().enabled;
         for (int i = 0; i < 12; i++)
         {
             StartCoroutine(moveRD2D(spell, horizontal, speed));
@@ -192,10 +193,7 @@ public class playerUseSkill : MonoBehaviour
         //stop
         yield return new WaitForSeconds(0.2f);
         spell.velocity = Vector2.zero; // ulti dừng 
-        stopRasengan = true;
-        //spell.GetComponent<Animator>().SetBool("next", true); // Bùm chíu :v
-        //yield return new WaitForSeconds(1f);
-        //end skill
+        //delete shadow
         for (int i = 0; i < 10; i++)
         {
             Destroy(shadow[i]);

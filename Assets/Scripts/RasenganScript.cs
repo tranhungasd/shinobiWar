@@ -34,7 +34,6 @@ public class RasenganScript : MonoBehaviour
                 enemy[i].GetComponent<Rigidbody2D>().transform.localPosition = thePosSpell;
             }
         }
-        checkStop = objPlayer.GetComponent<playerUseSkill>().stopRasengan;
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -43,12 +42,7 @@ public class RasenganScript : MonoBehaviour
             // pos enemy = pos rasengan
             enemy[countEnemy] = col.gameObject;
             countEnemy++;
-            //calls ReceivesDamage() in enemy script
-            // resengan chạy thẳng gom enemy, khi stopRasengan = true thì mới tính damage và nổ tung;
-            if (checkStop) 
-            {
-                StartCoroutine(EndSkill(col)); // effect end skill
-            }
+            StartCoroutine(EndSkill(col)); // effect end skill
         }
     }
     IEnumerator EndSkill(Collider2D col)
