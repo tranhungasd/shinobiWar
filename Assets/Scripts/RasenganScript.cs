@@ -8,6 +8,9 @@ public class RasenganScript : MonoBehaviour
     private Animator myAnimator;
     private float existtime = 2;
     private GameObject objPlayer;
+    private GameObject[] enemy = new GameObject[10];
+    private int countEnemy = 0;
+    private bool checkStop = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,19 +26,26 @@ public class RasenganScript : MonoBehaviour
             Destroy(this.gameObject);
         }
         objPlayer = GameObject.FindWithTag("MainPlayer");
+        for (int i = 0; i < 10; i++)
+        {
+            if (enemy[i] != null)
+            {
+                Vector3 thePosSpell = GetComponent<Rigidbody2D>().transform.localPosition;
+                enemy[i].GetComponent<Rigidbody2D>().transform.localPosition = thePosSpell;
+            }
+        }
+        checkStop = objPlayer.GetComponent<playerUseSkill>().stopRasengan;
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "enemy")
         {
             // pos enemy = pos rasengan
-            Vector3 thePosSpell = GetComponent<Rigidbody2D>().transform.localPosition;
-            col.gameObject.GetComponent<Rigidbody2D>().transform.localPosition = thePosSpell;
+            enemy[countEnemy] = col.gameObject;
+            countEnemy++;
             //calls ReceivesDamage() in enemy script
             // resengan chạy thẳng gom enemy, khi stopRasengan = true thì mới tính damage và nổ tung;
-            bool check = objPlayer.GetComponent<playerUseSkill>().stopRasengan;
-            Debug.Log(check.ToString());
-            if (check) 
+            if (checkStop) 
             {
                 StartCoroutine(EndSkill(col)); // effect end skill
             }
