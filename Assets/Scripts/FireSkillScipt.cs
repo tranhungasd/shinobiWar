@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireSkillScipt : MonoBehaviour
 {
+   
     public int damage;
     private Animator myAnimator;
     private float existtime = 2;

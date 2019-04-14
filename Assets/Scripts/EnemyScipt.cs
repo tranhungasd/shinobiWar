@@ -84,6 +84,7 @@ public class EnemyScipt : MonoBehaviour
     }
     public void ReceivesDamage(int damage)
     {
+        Debug.Log(damage);
         curHealth -= damage;
     }
     private void setIdle()

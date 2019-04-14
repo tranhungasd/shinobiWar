@@ -6,12 +6,14 @@ using UnityEngine;
 
 public class playerUseSkill : MonoBehaviour
 {
+    public SwordHitScript swordHitbox;
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private SpriteRenderer sp;
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
     public bool isAtk = false;
+    
     GameObject objPlayer;
     ParameterPlayer paraPlayer;
     [SerializeField]
@@ -26,6 +28,7 @@ public class playerUseSkill : MonoBehaviour
     private Transform exitPoint;
     void Start()
     {
+        swordHitbox.swordbox = GetComponent<Collider2D>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
@@ -38,7 +41,7 @@ public class playerUseSkill : MonoBehaviour
     {
         ReadOptions();
         if (!isAtk)
-        {
+        { 
             GetInput();
         }
     }
@@ -56,7 +59,10 @@ public class playerUseSkill : MonoBehaviour
         {
             buttonSpaceAudio.Play();
             startAttack();
-            StartCoroutine(AttackNormal());
+            swordHitbox.swordbox.enabled = true;
+            swordHitbox.isHitting = true;
+            StartCoroutine(AttackNormal());            
+            
         }
         if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && paraPlayer.waitRecSkill[1] == false)
         {
@@ -148,6 +154,10 @@ public class playerUseSkill : MonoBehaviour
     private void stopAttack()
     {
         isAtk = false;
+
+        swordHitbox.isHitting = false;
+        swordHitbox.swordbox.enabled = false;
+       
         myAnimator.SetBool("attack", false);
         ActivateLayer("MovePlayer");
     } 

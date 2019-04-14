@@ -11,6 +11,7 @@ public class ParameterPlayer : MonoBehaviour
 {
     public TextMeshProUGUI tmpTxt;
     private string input;
+    SwordHitScript swordDamage;
     [SerializeField]
     private Stat health;
     [SerializeField]
@@ -29,6 +30,7 @@ public class ParameterPlayer : MonoBehaviour
     private tagParameter line = new tagParameter();
     void Start()
     {
+        swordDamage = GetComponent<SwordHitScript>();
         skill = -1;
         ReadAll();
         health.Initialized(getCur("HP"), getTotal("HP"));
