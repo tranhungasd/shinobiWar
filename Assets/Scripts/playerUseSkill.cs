@@ -103,7 +103,7 @@ public class playerUseSkill : MonoBehaviour
         Rigidbody2D rgbSpell = objEffSpell.GetComponent<Rigidbody2D>();
         rgbSpell.velocity = new Vector2(objPlayer.transform.localScale.x * 20f, rgbSpell.velocity.y);
         yield return new WaitForSeconds(0.4f);
-        Debug.Log("attack");
+    
         stopAttack();
     }
     private IEnumerator Attack3()
