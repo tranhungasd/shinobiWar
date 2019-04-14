@@ -2726,6 +2726,7 @@ GameObject:
   - component: {fileID: 207524182}
   - component: {fileID: 207524185}
   - component: {fileID: 207524183}
+  - component: {fileID: 207524184}
   m_Layer: 0
   m_Name: swordhitbox
   m_TagString: skill0
@@ -2741,11 +2742,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207524181}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 1.61, z: 1}
+  m_LocalPosition: {x: 0.31, y: 1.61, z: 0}
   m_LocalScale: {x: 2, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1648503371475355107}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &207524183
 BoxCollider2D:
@@ -2757,7 +2758,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2773,6 +2774,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &207524184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207524181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae33c4874f56ed42ab6545191eed025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHitting: 0
+  damage: 30
+  swordbox: {fileID: 0}
 --- !u!33 &207524185
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -25128,7 +25144,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1648503371475355107}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1369565134
 GameObject:
@@ -39769,6 +39785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43073d2bc5279de439b8cd2974857daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordHitbox: {fileID: 207524184}
   keys:
   - {fileID: 753069899}
   - {fileID: 125852227}
@@ -39817,8 +39834,8 @@ Transform:
   - {fileID: 354434097}
   - {fileID: 881653926}
   - {fileID: 1418116495}
-  - {fileID: 1368063638}
   - {fileID: 207524182}
+  - {fileID: 1368063638}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
