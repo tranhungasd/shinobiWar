@@ -13,7 +13,6 @@ public class playerUseSkill : MonoBehaviour
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
     public bool isAtk = false;
-    public bool isRasengan = false;
     
     GameObject objPlayer;
     ParameterPlayer paraPlayer;
@@ -170,31 +169,33 @@ public class playerUseSkill : MonoBehaviour
         // move
         rasengan2();
         GameObject[] shadow = new GameObject[10];
-        isRasengan = true;
-        mainPlayer = GetComponent<Rigidbody2D>();
-        Debug.Log(mainPlayer.ToString());
         // rasengan đi
-        StartCoroutine(moveRD2D(spell, horizontal, speed)); 
         // create shadow
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 12; i++)
         {
+            StartCoroutine(moveRD2D(spell, horizontal, speed));
             // t muốn nhân vật di chuyển theo rasengan chỗ này nè
-            StartCoroutine(moveRD2D(mainPlayer, horizontal, speed));
-            //yield return new WaitForSeconds(0.1f);
+            //StartCoroutine(moveRD2D(mainPlayer, horizontal, speed));
+            Vector3 thePos = objPlayer.transform.localPosition;
+            Vector3 thePosSpell = spell.transform.localPosition;
+            thePos.x = thePosSpell.x;
+            objPlayer.transform.localPosition = thePos;
+            yield return new WaitForSeconds(0.01f);
+            if (i % 3 != 0)
+            { continue; }
             shadow[i] = Instantiate(prefabsSpell[3], shadowPoint.position, Quaternion.identity);
             Vector3 scaleShadow = shadow[i].transform.localScale;
             scaleShadow.x = theScale.x;
             shadow[i].transform.localScale = scaleShadow;
         }
         //stop
-        yield return new WaitForSeconds(0.1f); 
+        yield return new WaitForSeconds(0.12f); 
         mainPlayer.velocity = Vector2.zero; // nhân vật dừng
         yield return new WaitForSeconds(0.2f);
         spell.velocity = Vector2.zero; // ulti dừng 
         spell.GetComponent<Animator>().SetBool("next", true); // Bùm chíu :v
         yield return new WaitForSeconds(0.3f);
         //end skill
-        isRasengan = false;
         for (int i = 0; i < 10; i++)
         {
             Destroy(shadow[i]);

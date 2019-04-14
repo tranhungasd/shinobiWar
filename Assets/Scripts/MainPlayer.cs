@@ -32,10 +32,9 @@ public class MainPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GetComponent<playerUseSkill>().isAtk && !GetComponent<playerUseSkill>().isRasengan) // Không thể vừa đánh vừa di chuyển
+        if (GetComponent<playerUseSkill>().isAtk) // Không thể vừa đánh vừa di chuyển
         {
             HandleMovement(0f);
-            Debug.Log(GetComponent<playerUseSkill>().isRasengan.ToString());
         }
         else
         {
