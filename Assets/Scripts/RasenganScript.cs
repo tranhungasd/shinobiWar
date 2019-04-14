@@ -49,7 +49,7 @@ public class RasenganScript : MonoBehaviour
     {
         myAnimator.SetBool("next", true); //Next State animator fire ball
         col.gameObject.GetComponent<EnemyScipt>().ReceivesDamage(damage);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.55f);
         Destroy(this.gameObject);
     }
 }
