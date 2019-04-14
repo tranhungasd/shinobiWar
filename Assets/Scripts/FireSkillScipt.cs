@@ -6,6 +6,7 @@ public class FireSkillScipt : MonoBehaviour
 {
     public int damage;
     private Animator myAnimator;
+    private float existtime = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,11 @@ public class FireSkillScipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        existtime -= Time.deltaTime;
+        if (existtime < 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
