@@ -13,6 +13,7 @@ public class playerUseSkill : MonoBehaviour
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
     public bool isAtk = false;
+    public bool isRasengan = false;
     
     GameObject objPlayer;
     ParameterPlayer paraPlayer;
@@ -26,6 +27,10 @@ public class playerUseSkill : MonoBehaviour
     public AudioSource buttonTAudio;
     [SerializeField]
     private Transform exitPoint;
+    [SerializeField]
+    private Transform ultiPoint;
+    [SerializeField]
+    private Transform shadowPoint;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -39,6 +44,7 @@ public class playerUseSkill : MonoBehaviour
     void Update()
     {
         ReadOptions();
+        objPlayer = GameObject.Find("MainPlayer");
         if (!isAtk)
         { 
             GetInput();
@@ -89,6 +95,8 @@ public class playerUseSkill : MonoBehaviour
         if (Input.GetKeyDown(keycodes[4]) && Input.GetKey(keycodes[4]) && paraPlayer.waitRecSkill[5] == false)
         {
             buttonTAudio.Play();
+            startAttack();
+            StartCoroutine(Ultimate());
         }
 
     }
@@ -142,6 +150,61 @@ public class playerUseSkill : MonoBehaviour
         Destroy(objEffSpell);
         Debug.Log("attack");
         stopAttack();
+    }
+    private IEnumerator Ultimate()
+    {
+        Rigidbody2D mainPlayer = objPlayer.GetComponent<Rigidbody2D>();
+        mainPlayer.velocity = Vector2.zero;
+        rasengan1();
+        paraPlayer.skill = 5;
+        GameObject objEffSpell = Instantiate(prefabsSpell[4], ultiPoint.position, Quaternion.identity);
+        // create rasengan
+        Rigidbody2D spell = objEffSpell.GetComponent<Rigidbody2D>();
+        Vector3 theScale = objPlayer.transform.localScale;
+        Vector3 theScaleSpell = objEffSpell.transform.localScale;
+        theScaleSpell.x = objPlayer.transform.localScale.x * 5.433f;
+        objEffSpell.transform.localScale = theScaleSpell;
+        float horizontal = theScale.x;
+        float speed = 50f;
+        yield return new WaitForSeconds(0.3f);
+        // move
+        rasengan2();
+        GameObject[] shadow = new GameObject[10];
+        isRasengan = true;
+        mainPlayer = GetComponent<Rigidbody2D>();
+        Debug.Log(mainPlayer.ToString());
+        // rasengan đi
+        StartCoroutine(moveRD2D(spell, horizontal, speed)); 
+        // create shadow
+        for (int i = 0; i < 10; i++)
+        {
+            // t muốn nhân vật di chuyển theo rasengan chỗ này nè
+            StartCoroutine(moveRD2D(mainPlayer, horizontal, speed));
+            //yield return new WaitForSeconds(0.1f);
+            shadow[i] = Instantiate(prefabsSpell[3], shadowPoint.position, Quaternion.identity);
+            Vector3 scaleShadow = shadow[i].transform.localScale;
+            scaleShadow.x = theScale.x;
+            shadow[i].transform.localScale = scaleShadow;
+        }
+        //stop
+        yield return new WaitForSeconds(0.1f); 
+        mainPlayer.velocity = Vector2.zero; // nhân vật dừng
+        yield return new WaitForSeconds(0.2f);
+        spell.velocity = Vector2.zero; // ulti dừng 
+        spell.GetComponent<Animator>().SetBool("next", true); // Bùm chíu :v
+        yield return new WaitForSeconds(0.3f);
+        //end skill
+        isRasengan = false;
+        for (int i = 0; i < 10; i++)
+        {
+            Destroy(shadow[i]);
+        }
+        stopAttack();
+    }
+    private IEnumerator moveRD2D(Rigidbody2D myRD2D, float horizontal, float speed)
+    {
+        myRD2D.velocity = new Vector2(horizontal * speed, myRD2D.velocity.y);
+        yield return null;
     }
     private void startAttack()
     {
@@ -199,5 +262,21 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
+    }
+    private void rasengan1()
+    {
+        myAnimator.SetFloat("sword", 0);
+        myAnimator.SetFloat("shuriken", 0);
+        myAnimator.SetFloat("fire", 0);
+        myAnimator.SetFloat("rasengan1", 1);
+        myAnimator.SetFloat("resengan2", 0);
+    }
+    private void rasengan2()
+    {
+        myAnimator.SetFloat("sword", 0);
+        myAnimator.SetFloat("shuriken", 0);
+        myAnimator.SetFloat("fire", 0);
+        myAnimator.SetFloat("rasengan1", 0);
+        myAnimator.SetFloat("resengan2", 1);
     }
 }
