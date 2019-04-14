@@ -8,7 +8,6 @@ public class ShurikenScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemies = GetComponent<EnemyScipt>();
     }
 
     // Update is called once per frame

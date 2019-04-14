@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\CameraPlayer.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\EnemyScipt.cs" />
+     <Compile Include="Assets\Scripts\FireSkillScipt.cs" />
      <Compile Include="Assets\Scripts\getKeyOptions.cs" />
      <Compile Include="Assets\Scripts\IAMainPlayer.cs" />
      <Compile Include="Assets\Scripts\MainPlayer.cs" />
