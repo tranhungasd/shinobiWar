@@ -104,11 +104,11 @@ public class playerUseSkill : MonoBehaviour
     {
         shuriken();
         paraPlayer.skill = 1;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         GameObject objEffSpell = Instantiate(prefabsSpell[0], exitPoint.position, Quaternion.identity);
         Rigidbody2D rgbSpell = objEffSpell.GetComponent<Rigidbody2D>();
         rgbSpell.velocity = new Vector2(objPlayer.transform.localScale.x * 20f, rgbSpell.velocity.y);
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.1f);
     
         stopAttack();
     }
