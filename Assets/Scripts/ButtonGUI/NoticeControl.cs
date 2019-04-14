@@ -7,6 +7,7 @@ public class NoticeControl : MonoBehaviour
     public GameObject noticeObj;
     public GameObject btnNotice;
     public AudioSource clickAudio;
+    [SerializeField]
     private bool status = false;
     void Start()
     {
@@ -29,15 +30,15 @@ public class NoticeControl : MonoBehaviour
     public void quitClick(GameObject gO)
     {
         clickAudio.Play();
-        btnNotice.SetActive(status);
+        btnNotice.SetActive(true);
+        noticeObj.SetActive(false);
         status = false;
-        noticeObj.SetActive(status);
     }
     public void hotkeyClick(GameObject gO)
     {
         clickAudio.Play();
-        btnNotice.SetActive(status);
-        status = !status;
-        noticeObj.SetActive(status);
+        btnNotice.SetActive(false);
+        noticeObj.SetActive(true);
+        status = true;
     }
 }

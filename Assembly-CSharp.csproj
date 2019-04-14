@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\but.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\AbilitiesControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\btnOfMenu.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\EquipControl.cs" />
