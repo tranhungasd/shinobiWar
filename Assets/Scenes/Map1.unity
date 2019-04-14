@@ -11892,7 +11892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   damage: 0
-  maxHealth: 60
+  maxHealth: 5000
   maxDist: 2
   minDist: -2
 --- !u!1 &697899667
@@ -17893,7 +17893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   damage: 0
-  maxHealth: 50
+  maxHealth: 1000
   maxDist: 2
   minDist: -2
 --- !u!95 &996790019
@@ -28176,7 +28176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512281948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.91, y: 1.32, z: 0}
+  m_LocalPosition: {x: 0.91, y: 1.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1648503371475355107}
@@ -40314,7 +40314,7 @@ MonoBehaviour:
   - {fileID: 1936236773}
   - {fileID: 661939792}
   isAtk: 0
-  isRasengan: 0
+  stopRasengan: 0
   prefabsSpell:
   - {fileID: 3339777293207293625, guid: 16a462065428ceb418d8b20920297af6, type: 3}
   - {fileID: 6804108689458260951, guid: eedcf2a15b735ba458e4dcdc311be322, type: 3}

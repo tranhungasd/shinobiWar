@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 548}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -111,10 +111,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 871, y: 498}
-  m_MaxSize: {x: 18006, y: 14048}
+  m_MinSize: {x: 679, y: 498}
+  m_MaxSize: {x: 18002, y: 14048}
   vertical: 0
-  controlID: 1688
+  controlID: 14
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,10 +136,10 @@ MonoBehaviour:
     y: 0
     width: 1531
     height: 947
-  m_MinSize: {x: 596, y: 498}
-  m_MaxSize: {x: 14006, y: 14048}
+  m_MinSize: {x: 404, y: 498}
+  m_MaxSize: {x: 14002, y: 14048}
   vertical: 1
-  controlID: 1570
+  controlID: 44
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 224}
   m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 1571
+  controlID: 45
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -210,8 +210,8 @@ MonoBehaviour:
     y: 0
     width: 1152
     height: 573
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -240,10 +240,10 @@ MonoBehaviour:
     y: 573
     width: 1531
     height: 374
-  m_MinSize: {x: 596, y: 274}
-  m_MaxSize: {x: 14006, y: 10024}
+  m_MinSize: {x: 332, y: 274}
+  m_MaxSize: {x: 14002, y: 10024}
   vertical: 0
-  controlID: 1656
+  controlID: 110
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -291,14 +291,14 @@ MonoBehaviour:
     y: 0
     width: 692
     height: 374
-  m_MinSize: {x: 364, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
-  m_ActualView: {fileID: 22}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
   - {fileID: 22}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -434,9 +434,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 9a130000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 
+      m_SelectedIDs: 601e0000
+      m_LastClickedID: 7776
+      m_ExpandedIDs: bcfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -486,14 +486,14 @@ MonoBehaviour:
     height: 553
   m_PersistentViewDataDictionary: {fileID: 0}
   m_WindowGUID: 1d92035582837c747b55e057d547a6f7
-  m_SceneLighting: 0
+  m_SceneLighting: 1
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 8.65, y: 5.86, z: 0}
+    m_Target: {x: -5.8799996, y: 1.825, z: 0}
     speed: 2
-    m_Value: {x: 8.65, y: 5.86, z: 0}
+    m_Value: {x: -5.8799996, y: 1.825, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -525,9 +525,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 34.854656
+    m_Target: 16.63281
     speed: 2
-    m_Value: 34.854656
+    m_Value: 16.63281
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -603,20 +603,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Image/Abilities/Rasengan
+    - Assets/Prefabs
   m_ViewMode: 1
-  m_StartGridSize: 60
+  m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Image/Abilities/Rasengan
-  m_LastFoldersGridSize: 60
+  - Assets/Prefabs
+  m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Unity\DCNG\DCNG
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ca130000
-    m_LastClickedID: 5066
-    m_ExpandedIDs: 00000000b00900008e0b0000ac0c0000140d0000b00e000082120000c4130000b415000082170000581a000000ca9a3b
+    scrollPos: {x: 0, y: 371}
+    m_SelectedIDs: 32150000
+    m_LastClickedID: 5426
+    m_ExpandedIDs: 00000000c8090000a60b0000c40c00002c0d0000c80e00009a120000dc130000cc1500009a170000701a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -644,7 +644,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b00900008e0b0000ac0c0000140d0000b00e000082120000c4130000b415000082170000581a000000ca9a3b
+    m_ExpandedIDs: 00000000c8090000a60b0000c40c00002c0d0000c80e00009a120000dc130000cc1500009a170000701a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -696,8 +696,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 60}
-    m_GridSize: 60
+    m_ScrollPosition: {x: 0, y: 0}
+    m_GridSize: 16
   m_DirectoriesAreaWidth: 201
 --- !u!114 &19
 MonoBehaviour:
@@ -729,6 +729,8 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: 1107628569672542284, guid: 214308b7126e7c347a13d4b8b56627e8, type: 2}
     - {fileID: 1107191464411323606, guid: 550b171181394ab4281206dad59856a0, type: 2}
+    - {fileID: 1107433801632105688, guid: dead4d5d9d22aa24e986e6abb96560ae, type: 2}
+    - {fileID: 1107729889430245204, guid: d13854ff47a776a48924c60ef4cc9238, type: 2}
     m_ValueSerializationHelper:
     - e00: 1
       e01: 0
@@ -762,11 +764,43 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 550b171181394ab4281206dad59856a0,
+  m_AnimatorController: {fileID: 9100000, guid: d13854ff47a776a48924c60ef4cc9238,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107191464411323606, guid: 550b171181394ab4281206dad59856a0,
+  - m_Target: {fileID: 1107729889430245204, guid: d13854ff47a776a48924c60ef4cc9238,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -808,7 +842,7 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 8056
+  m_LastSelectedObjectID: 7776
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -861,8 +895,8 @@ MonoBehaviour:
     height: 354
   m_PersistentViewDataDictionary: {fileID: 0}
   m_ResetOnNextRepaint: 0
-  m_SelectedAssetPath: Assets/Image/Abilities/Rasengan/Rasengan3-27.png
-  m_SelectedSpriteRectGUID: b491c593ee756e74d8a16857219e5839
+  m_SelectedAssetPath: Assets/enemyzombie/png/male/Idle (1).png
+  m_SelectedSpriteRectGUID: fb41e168d70f8bf41a7f7805e7bc3723
   m_LastUsedModuleTypeName: 
 --- !u!114 &23
 MonoBehaviour:

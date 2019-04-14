@@ -13,6 +13,7 @@ public class playerUseSkill : MonoBehaviour
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
     public bool isAtk = false;
+    public bool stopRasengan = false;
     
     GameObject objPlayer;
     ParameterPlayer paraPlayer;
@@ -178,7 +179,7 @@ public class playerUseSkill : MonoBehaviour
             //StartCoroutine(moveRD2D(mainPlayer, horizontal, speed));
             Vector3 thePos = objPlayer.transform.localPosition;
             Vector3 thePosSpell = spell.transform.localPosition;
-            thePos.x = thePosSpell.x;
+            thePos.x = thePosSpell.x - theScale.x*2;
             objPlayer.transform.localPosition = thePos;
             yield return new WaitForSeconds(0.01f);
             if (i % 3 != 0)
@@ -189,12 +190,11 @@ public class playerUseSkill : MonoBehaviour
             shadow[i].transform.localScale = scaleShadow;
         }
         //stop
-        yield return new WaitForSeconds(0.12f); 
-        mainPlayer.velocity = Vector2.zero; // nhân vật dừng
         yield return new WaitForSeconds(0.2f);
         spell.velocity = Vector2.zero; // ulti dừng 
-        spell.GetComponent<Animator>().SetBool("next", true); // Bùm chíu :v
-        yield return new WaitForSeconds(0.3f);
+        stopRasengan = true;
+        //spell.GetComponent<Animator>().SetBool("next", true); // Bùm chíu :v
+        //yield return new WaitForSeconds(1f);
         //end skill
         for (int i = 0; i < 10; i++)
         {
@@ -272,7 +272,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("rasengan1", 1);
         myAnimator.SetFloat("resengan2", 0);
     }
-    private void rasengan2()
+    public void rasengan2()
     {
         myAnimator.SetFloat("sword", 0);
         myAnimator.SetFloat("shuriken", 0);
