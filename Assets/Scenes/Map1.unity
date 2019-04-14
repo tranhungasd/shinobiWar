@@ -2788,7 +2788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHitting: 0
   damage: 30
-  swordbox: {fileID: 0}
+  swordbox: {fileID: 207524183}
 --- !u!33 &207524185
 MeshFilter:
   m_ObjectHideFlags: 0

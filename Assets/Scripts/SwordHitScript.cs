@@ -6,10 +6,11 @@ public class SwordHitScript : MonoBehaviour
 {
     public bool isHitting;
     public int damage;
-    public Collider2D swordbox;
+    public BoxCollider2D swordbox;
     // Start is called before the first frame update
     void Start()
     {
+        swordbox.enabled = false;
         isHitting = false;
     }
 

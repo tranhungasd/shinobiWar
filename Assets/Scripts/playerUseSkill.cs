@@ -28,7 +28,6 @@ public class playerUseSkill : MonoBehaviour
     private Transform exitPoint;
     void Start()
     {
-        swordHitbox.swordbox = GetComponent<Collider2D>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
