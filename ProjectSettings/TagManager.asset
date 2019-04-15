@@ -7,15 +7,6 @@ TagManager:
   - MainPlayer
   - ItemEquip
   - EyesEquip
-  - ground
-  - wall
-  - skill0
-  - skill1
-  - skill2
-  - skill3
-  - skill4
-  - skill5
-  - enemy
   layers:
   - Default
   - TransparentFX
@@ -25,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - 'background '
   - 
   - 
   - 
@@ -52,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1822418445
+    locked: 0
+  - name: Foreground
+    uniqueID: 4182416803
+    locked: 0
+  - name: Midground
+    uniqueID: 228591785
     locked: 0

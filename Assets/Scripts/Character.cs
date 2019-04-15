@@ -48,7 +48,7 @@ public abstract class Character : MonoBehaviour
             myRigidbody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
         }
-        myRigidbody.velocity = direction * speed;
+        myRigidbody.velocity = direction.normalized * speed;
     }
 
     public void HandleLayers()
