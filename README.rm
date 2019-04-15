@@ -1,15 +1,10 @@
 git config --global user.name "FIRST_NAME LAST_NAME"
 git config --global user.email "MY_NAME@example.com"
----------------------------------------------------
-// Tạo folder .git
 git init
 git status
 git add .
 git commit -m "update giờ + ngày"
 
----------------------------------------------------
-// tải folder
-git clone <link>
 ---------------------------------------------------
 // Lệnh return
 git stash
