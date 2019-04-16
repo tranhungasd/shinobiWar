@@ -61,16 +61,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\changescene.cs" />
-    <Compile Include="Assets\ControllCamera.cs" />
     <Compile Include="Assets\Map\Assets\Fonts\Script\scriptTexttest.cs" />
     <Compile Include="Assets\Map\Assets\Scenes\SceneChange.cs" />
     <Compile Include="Assets\Map\Fonts\Script\scriptTexttest.cs" />
+    <Compile Include="Assets\Map\scene.cs" />
     <Compile Include="Assets\Map\Scenes\SceneChange.cs" />
-    <Compile Include="Assets\scene.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\AbilitiesControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\btnOfMenu.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\EquipControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\MenuControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\MissionControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\NoticeControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\ProfileControl.cs" />
+    <Compile Include="Assets\Scripts\CameraPlayer.cs" />
+    <Compile Include="Assets\Scripts\changescene.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\ControllCamera.cs" />
+    <Compile Include="Assets\Scripts\EnemyScipt.cs" />
+    <Compile Include="Assets\Scripts\FireSkillScipt.cs" />
+    <Compile Include="Assets\Scripts\getKeyOptions.cs" />
     <Compile Include="Assets\Scripts\IAMainPlayer.cs" />
     <Compile Include="Assets\Scripts\MainPlayer.cs" />
+    <Compile Include="Assets\Scripts\Options.cs" />
+    <Compile Include="Assets\Scripts\playerUseSkill.cs" />
+    <Compile Include="Assets\Scripts\RasenganScript.cs" />
+    <Compile Include="Assets\Scripts\ShurikenScript.cs" />
+    <Compile Include="Assets\Scripts\Stat\ParameterPlayer.cs" />
+    <Compile Include="Assets\Scripts\Stat\Stat.cs" />
+    <Compile Include="Assets\Scripts\SwordHitScript.cs" />
     <None Include="Assets\Map\Assets\Fonts\Documentation\JazzCreateAltKeys_BubbleFont.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
