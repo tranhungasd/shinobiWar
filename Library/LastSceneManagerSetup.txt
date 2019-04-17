@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Map/Scenes/Minimap1/Round 2.unity
+- path: Assets/Map/Scenes/MiniMap2/Map2Round1.unity
   isLoaded: 1
   isActive: 1
