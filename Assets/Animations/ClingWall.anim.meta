@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Animations/ClingWall.anim.meta
+guid: 90e37c9cf3fedaa41a23d2594e9a7014
+========
+<<<<<<< HEAD
+guid: 0624795779cba90499a58471903d2762
+=======
+guid: 6c6e8e5ecf2ca34408e62149e7121ad1
+>>>>>>> 1b0f60571fa8dd33776b4993cbf958d235238aa8
+>>>>>>>> 5011a1f24f9926469041cec3b0777f9d06361cb9:Assets/Controllers/Animations/CrouchDashNoSword.anim.meta
+=======
+guid: 90e37c9cf3fedaa41a23d2594e9a7014
+>>>>>>> 5011a1f24f9926469041cec3b0777f9d06361cb9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
