@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Map/Scenes/Minimap3/Map3Round2.unity
+=======
+- path: Assets/Scenes/Map1.unity
+>>>>>>> 6474bbf8d94899cce31fae61e5137366ddf769ab
   isLoaded: 1
   isActive: 1
