@@ -13,6 +13,7 @@ public class playerUseSkill : MonoBehaviour
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
     private KeyCode[] keycodes = new KeyCode[5];
     public bool isAtk = false;
+    private bool isDfn = false;
     
     GameObject objPlayer;
     ParameterPlayer paraPlayer;
@@ -30,6 +31,8 @@ public class playerUseSkill : MonoBehaviour
     private Transform ultiPoint;
     [SerializeField]
     private Transform shadowPoint;
+    [SerializeField]
+    private Transform shieldPoint;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -65,7 +68,7 @@ public class playerUseSkill : MonoBehaviour
             startAttack();
             swordHitbox.swordbox.enabled = true;
             swordHitbox.isHitting = true;
-            StartCoroutine(AttackNormal());            
+            StartCoroutine(AttackNormal());
             
         }
         if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && paraPlayer.waitRecSkill[1] == false)
@@ -76,8 +79,9 @@ public class playerUseSkill : MonoBehaviour
         }
         if (Input.GetKeyDown(keycodes[1]) && Input.GetKey(keycodes[1]) && paraPlayer.waitRecSkill[2] == false)
         {
-            Debug.Log("adsfsad");
+            startDefend();
             buttonWAudio.Play();
+            StartCoroutine(ShieldDefend());
         }
         if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && paraPlayer.waitRecSkill[3] == false)
         {
@@ -117,6 +121,12 @@ public class playerUseSkill : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
     
         stopAttack();
+    }
+    private IEnumerator ShieldDefend()
+    {
+        defend();
+        GameObject objEffSpell = Instantiate(prefabsSpell[1], shieldPoint.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.1f);
     }
     private IEnumerator Attack3()
     {
@@ -205,6 +215,14 @@ public class playerUseSkill : MonoBehaviour
         myRD2D.velocity = new Vector2(horizontal * speed, myRD2D.velocity.y);
         yield return null;
     }
+    private void startDefend()
+    {
+        isDfn = true;
+    }
+    private void stopDefend()
+    {
+        isDfn = false;
+    }
     private void startAttack()
     {
         isAtk = true;
@@ -237,6 +255,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
+        myAnimator.SetFloat("defend", 0);
     }
     private void sword()
     {
@@ -245,6 +264,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
+        myAnimator.SetFloat("defend", 0);
     }
     private void fire()
     {
@@ -253,6 +273,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 1);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
+        myAnimator.SetFloat("defend", 0);
     }
     private void shuriken()
     {
@@ -261,6 +282,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
+        myAnimator.SetFloat("defend", 0);
     }
     private void rasengan1()
     {
@@ -269,6 +291,7 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 1);
         myAnimator.SetFloat("resengan2", 0);
+        myAnimator.SetFloat("defend", 0);
     }
     public void rasengan2()
     {
@@ -277,5 +300,15 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 1);
+        myAnimator.SetFloat("defend", 0);
+    }
+    public void defend()
+    {
+        myAnimator.SetFloat("sword", 0);
+        myAnimator.SetFloat("shuriken", 0);
+        myAnimator.SetFloat("fire", 0);
+        myAnimator.SetFloat("rasengan1", 0);
+        myAnimator.SetFloat("resengan2", 0);
+        myAnimator.SetFloat("defend", 1);
     }
 }

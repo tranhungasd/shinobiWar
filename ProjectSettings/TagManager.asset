@@ -25,10 +25,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerPrefabLayer
+  - EnemyLayer
+  - PlayerLayer
+  - EnvironmentLayer
   - 
   - 
   - 
