@@ -9,11 +9,14 @@ public class MainPlayer : MonoBehaviour
     private Animator myAnimator;
     private Vector2 direction;
     public float jumpHeight;
+    public WallClingScript wallClingBox;
     [SerializeField]
     private float speed = 4;
     private bool facingRight;
     private bool grounded = true;
     private bool wallcling = false;
+    private float gravityScaleValue = 10;
+    
     public AudioSource runAudio;
     public AudioSource jumpAudio;
     public AudioSource downButtonAudio;
@@ -27,8 +30,18 @@ public class MainPlayer : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         jump = false;
         slide = false;
+        wallcling = wallClingBox.iswallcling;
     }
-
+    void Update()
+    {
+        wallcling = wallClingBox.iswallcling;
+        if (wallcling && !grounded)
+        {
+            setWallClinging();
+            FreezeGravity();
+            jump = false;
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -78,14 +91,20 @@ public class MainPlayer : MonoBehaviour
     {
         direction = Vector2.zero;
         //myAnimator.SetBool("move", false);
-        if (!wallcling && grounded) myAnimator.SetBool("move", false);
+        if (grounded) myAnimator.SetBool("move", false);
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             runAudio.Play();
             myAnimator.SetBool("move", true);
-            UnfreezePosition();
+            
+            
+            if (wallcling && facingRight)
+            {
+                wallClingBox.iswallcling = false;
+                UnfreezeGravity();
+                setJump();
+            }
             direction += Vector2.left;
-            if (wallcling && facingRight) setJump();
             if (grounded) setRun();
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
@@ -99,9 +118,14 @@ public class MainPlayer : MonoBehaviour
         {
             runAudio.Play();
             myAnimator.SetBool("move", true);
-            UnfreezePosition();
+            Debug.Log(wallcling);
+            if (wallcling && !facingRight)
+            {
+                wallClingBox.iswallcling = false;
+                UnfreezeGravity();
+                setJump();
+            }
             direction += Vector2.right;
-            if (wallcling && !facingRight) setJump();
             if (grounded) setRun();
             if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
             {
@@ -112,16 +136,13 @@ public class MainPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && (grounded || wallcling))
         {
+            UnfreezeGravity();
             jumpAudio.Play();
             myAnimator.SetBool("move", true);
-            UnfreezePosition();
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
             jump = true;
-            wallcling = false;
+            wallClingBox.iswallcling = false;
             grounded = false;
-            myAnimator.SetBool("move", true);
-            UnfreezePosition();
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
         }
 
     }
@@ -140,27 +161,21 @@ public class MainPlayer : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "ground")
-        {
+       if (other.gameObject.tag == "ground")
+       {
+            wallClingBox.iswallcling = false;
             wallcling = false;
             grounded = true;
             jump = false;
-        }
-        if((other.gameObject.tag == "wall") && !grounded)
-        {
-            wallcling = true;
-            jump = false;
-            FreezePosition();
-            setWallClinging();
-        }
+       }
     }
-    private void FreezePosition()
+    private void FreezeGravity()
     {
-        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+        myRigidbody2D.gravityScale = 0;
     }
-    private void UnfreezePosition()
+    private void UnfreezeGravity()
     {
-        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        myRigidbody2D.gravityScale = gravityScaleValue;
     }
     private void setCDN()
     {

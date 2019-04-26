@@ -14,7 +14,6 @@ public class ShieldScript : MonoBehaviour
         shieldPoint = GameObject.Find("shieldpoint");
         shield = GameObject.Find("Shield");
     }
-
     // Update is called once per frame
     void Update()
     {
