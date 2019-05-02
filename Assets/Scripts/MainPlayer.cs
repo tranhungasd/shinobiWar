@@ -10,6 +10,8 @@ public class MainPlayer : MonoBehaviour
     private Vector2 direction;
     public float jumpHeight;
     public WallClingScript wallClingBox;
+    public int maxHealth;
+    public int curHealth;
     [SerializeField]
     private float speed = 4;
     private bool facingRight;
@@ -25,6 +27,7 @@ public class MainPlayer : MonoBehaviour
     double jumptime = 1.0;
     void Start()
     {
+        curHealth = maxHealth;
         facingRight = true;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
@@ -118,7 +121,6 @@ public class MainPlayer : MonoBehaviour
         {
             runAudio.Play();
             myAnimator.SetBool("move", true);
-            Debug.Log(wallcling);
             if (wallcling && !facingRight)
             {
                 wallClingBox.iswallcling = false;
@@ -169,6 +171,11 @@ public class MainPlayer : MonoBehaviour
             jump = false;
        }
     }
+    public void ReceivesDamage(int damage)
+        {
+            curHealth -= damage;
+        }
+  
     private void FreezeGravity()
     {
         myRigidbody2D.gravityScale = 0;

@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class EnemyScipt : MonoBehaviour
 {
-    private Animator myAnimator;
-    private int curHealth;
+    private Animator myAnimator;   
     public int speed;
     public int damage;
     public int maxHealth;
+    private int curHealth;
     private bool grounded = false;
     private GameObject playerFinder;
     private Vector3 initialPosition;
     public float maxDist;
     public float minDist;
     private float originalPos;
-    int direction;
-
+    private bool playerRight;
+    private int direction;
+    private float dist;
+    public float maxPlayerDist;
+    public float attackRange;
+    public ENSwordHitScript ENSwordHitbox;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +36,17 @@ public class EnemyScipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dist = Vector3.Distance(playerFinder.transform.position, transform.position);
+        
         if (curHealth == 0 || curHealth < 0)
         {
             Destroy(this.gameObject);
         }
-        if (grounded)
+        if (dist < maxPlayerDist)
+        {
+            PlayerInRange();
+        }
+        else if (grounded)
         {
             Move();
         }
@@ -74,9 +84,86 @@ public class EnemyScipt : MonoBehaviour
                 }
                 break;
         }
+    } 
+    private void startAttack()
+    {
+        myAnimator.SetFloat("attack", 0);
+        ActivateLayer("EnemyAttack");
+        myAnimator.SetBool("sword", true);
+    }
+    private IEnumerator Attack()
+    {
+        myAnimator.SetFloat("attack", 1);
+        
+        yield return new WaitForSeconds(0.4f);
+
+        stopAttack();
+    }
+    private void stopAttack()
+    {
+        myAnimator.SetBool("sword", false);
+        ENSwordHitbox.ENswordbox.enabled = false;
+        ENSwordHitbox.isHitting = false;
+        if (dist <= attackRange)
+        {
+            myAnimator.SetFloat("attack", 0);
+            StartCoroutine(Attack());
+        }
+        ActivateLayer("EnemyMove");
+    }
+    public void ActivateLayer(string layerName)
+    {
+        for (int i = 0; i < myAnimator.layerCount; i++)
+        {
+            myAnimator.SetLayerWeight(i, 0);
+        }
+        myAnimator.SetLayerWeight(myAnimator.GetLayerIndex(layerName), 1);
+    }
+    private bool detectSide(float x)
+    {
+        if((x - transform.position.x) < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    private void PlayerInRange()
+    {
+        if (dist <= attackRange)
+        {
+            startAttack();
+            ENSwordHitbox.isHitting = true;
+            ENSwordHitbox.ENswordbox.enabled = true;
+            StartCoroutine(Attack());
+        }
+        if (detectSide(playerFinder.transform.position.x) == true)
+        {
+            setRun();
+            transform.localScale = new Vector2(1, transform.localScale.y);
+            direction = 1;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+        }
+        else
+        {
+            setRun();
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+            direction = -1;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+        }
+        
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if(other.gameObject.tag == "MainPlayer")
+        {
+            startAttack();
+            ENSwordHitbox.ENswordbox.enabled = true;
+            ENSwordHitbox.isHitting = true;
+            StartCoroutine(Attack());
+        }
         if(other.gameObject.tag == "ground")
         {
             grounded = true;
@@ -84,19 +171,14 @@ public class EnemyScipt : MonoBehaviour
     }
     public void ReceivesDamage(int damage)
     {
-        Debug.Log(damage);
         curHealth -= damage;
     }
     private void setIdle()
     {
         myAnimator.SetFloat("run", 0);
-        myAnimator.SetFloat("idle", 1);
-        myAnimator.SetFloat("attack", 0);
     }
     private void setRun()
     {
         myAnimator.SetFloat("run", 1);
-        myAnimator.SetFloat("idle", 0);
-        myAnimator.SetFloat("attack", 0);
     }
 }
