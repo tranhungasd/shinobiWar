@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using System;
 
@@ -11,7 +12,9 @@ public class MainPlayer : MonoBehaviour
     public float jumpHeight;
     public WallClingScript wallClingBox;
     public int maxHealth;
-    public int curHealth;
+    private int curHealth;
+    public GameObject hpbar;
+    public TextMeshProUGUI hptext;
     [SerializeField]
     private float speed = 4;
     private bool facingRight;
@@ -28,6 +31,7 @@ public class MainPlayer : MonoBehaviour
     void Start()
     {
         curHealth = maxHealth;
+        hpbar.gameObject.GetComponent<Stat>().Initialized(curHealth, maxHealth);      
         facingRight = true;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
@@ -172,9 +176,11 @@ public class MainPlayer : MonoBehaviour
        }
     }
     public void ReceivesDamage(int damage)
-        {
-            curHealth -= damage;
-        }
+    {
+       curHealth -= damage;
+       hpbar.GetComponent<Stat>().Initialized(curHealth, maxHealth);
+       hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
+    }
   
     private void FreezeGravity()
     {

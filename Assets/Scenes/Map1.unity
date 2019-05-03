@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &48256637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2275138496922583306, guid: 5e452761f643ead4ea7dc55964c714f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1607039475483195154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &111037781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5071422312506831180, guid: f00cfcbd8685f1a4f85799548af3aec4,
@@ -366,7 +372,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHitting: 0
-  damage: 10
   ENswordbox: {fileID: 429409590}
 --- !u!61 &429409590
 BoxCollider2D:
@@ -1244,6 +1249,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 2124716637243283500}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1487795078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2275138496376271666, guid: 5e452761f643ead4ea7dc55964c714f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1607039475483195154}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1591482396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,7 +1353,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1607039475483195154}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 48256637}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26f5b889a4c86c04eaba0f188a2e1319, type: 3}
@@ -2266,6 +2283,21 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2275138496922583306, guid: 5e452761f643ead4ea7dc55964c714f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Hpbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275138496376271664, guid: 5e452761f643ead4ea7dc55964c714f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Hptext
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275138496922583316, guid: 5e452761f643ead4ea7dc55964c714f1,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e452761f643ead4ea7dc55964c714f1, type: 3}
 --- !u!1001 &2124716637243283500
@@ -2444,6 +2476,11 @@ PrefabInstance:
       propertyPath: attackRange
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8775062326299000979, guid: c4e15f620cf5e8346ac8631ee6c90c4c,
+        type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4e15f620cf5e8346ac8631ee6c90c4c, type: 3}
 --- !u!1001 &7418993582780602236
@@ -2548,6 +2585,16 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 3458091691613993081, guid: f00cfcbd8685f1a4f85799548af3aec4,
+        type: 3}
+      propertyPath: hpbar
+      value: 
+      objectReference: {fileID: 48256637}
+    - target: {fileID: 3458091691613993081, guid: f00cfcbd8685f1a4f85799548af3aec4,
+        type: 3}
+      propertyPath: hptext
+      value: 
+      objectReference: {fileID: 1487795078}
     - target: {fileID: 5960516257050508655, guid: f00cfcbd8685f1a4f85799548af3aec4,
         type: 3}
       propertyPath: keys.Array.data[0]

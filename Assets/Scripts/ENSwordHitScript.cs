@@ -5,12 +5,13 @@ using UnityEngine;
 public class ENSwordHitScript : MonoBehaviour
 {
     public bool isHitting;
-    public int damage;
+    private int damage;
     public BoxCollider2D ENswordbox;
     private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        damage = transform.parent.gameObject.GetComponent<EnemyScipt>().damage;
         ENswordbox.enabled = false;
         isHitting = false;
     }
