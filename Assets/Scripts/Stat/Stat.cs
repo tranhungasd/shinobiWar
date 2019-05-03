@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.UI;
 
 public class Stat : MonoBehaviour
@@ -38,6 +39,7 @@ public class Stat : MonoBehaviour
     }
     void Start()
     {
+        
         content = GetComponent<Image>();
     }
     void Update()
@@ -48,5 +50,6 @@ public class Stat : MonoBehaviour
     {
         myMaxValue = maxValue;
         myCurrentValue = currentValue;
+        
     }
 }

@@ -425,6 +425,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 15
+  damage: 0
+  wallClingBox: {fileID: 0}
+  maxHealth: 0
+  hpbar: {fileID: 0}
+  hptext: {fileID: 0}
   speed: 10
   runAudio: {fileID: 0}
   jumpAudio: {fileID: 0}
@@ -530,6 +535,7 @@ MonoBehaviour:
   exitPoint: {fileID: 7462189945393513407}
   ultiPoint: {fileID: 7462189945215068525}
   shadowPoint: {fileID: 7462189945310021866}
+  shieldPoint: {fileID: 0}
 --- !u!114 &5960516257050508560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,7 +727,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7462189946597814117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -753,5 +759,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHitting: 0
-  damage: 30
   swordbox: {fileID: 7462189946597814119}

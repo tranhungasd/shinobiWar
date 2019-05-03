@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemyScipt : MonoBehaviour
@@ -12,6 +13,9 @@ public class EnemyScipt : MonoBehaviour
     private bool grounded = false;
     private GameObject playerFinder;
     private Vector3 initialPosition;
+    public GameObject objectInfo;
+    public GameObject hpbar;
+    public TextMeshProUGUI hptext;
     public float maxDist;
     public float minDist;
     private float originalPos;
@@ -24,13 +28,19 @@ public class EnemyScipt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        curHealth = maxHealth;
+        
         playerFinder = GameObject.Find("MainPlayer");
         myAnimator = GetComponent<Animator>();
         initialPosition = transform.position;
         //direction -1 is facing left, 1 is right
         direction = 1;
         originalPos = transform.position.x;
+        curHealth = maxHealth;
+        objectInfo.SetActive(true);
+        hpbar.gameObject.GetComponent<Stat>().Initialized(curHealth, maxHealth);
+        hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
+        objectInfo.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -48,6 +58,7 @@ public class EnemyScipt : MonoBehaviour
         }
         else if (grounded)
         {
+            objectInfo.SetActive(false);
             Move();
         }
     }
@@ -134,6 +145,7 @@ public class EnemyScipt : MonoBehaviour
     {
         if (dist <= attackRange)
         {
+            objectInfo.SetActive(true);
             startAttack();
             ENSwordHitbox.isHitting = true;
             ENSwordHitbox.ENswordbox.enabled = true;
@@ -171,7 +183,12 @@ public class EnemyScipt : MonoBehaviour
     }
     public void ReceivesDamage(int damage)
     {
+        objectInfo.SetActive(true);
+        Debug.Log(damage);
         curHealth -= damage;
+        Debug.Log(curHealth);
+        hpbar.GetComponent<Stat>().Initialized(curHealth, maxHealth);
+        hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
     }
     private void setIdle()
     {

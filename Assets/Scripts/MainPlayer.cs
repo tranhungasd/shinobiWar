@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 using System;
 
 public class MainPlayer : MonoBehaviour
@@ -10,6 +10,7 @@ public class MainPlayer : MonoBehaviour
     private Animator myAnimator;
     private Vector2 direction;
     public float jumpHeight;
+    public int damage;
     public WallClingScript wallClingBox;
     public int maxHealth;
     private int curHealth;
@@ -31,7 +32,8 @@ public class MainPlayer : MonoBehaviour
     void Start()
     {
         curHealth = maxHealth;
-        hpbar.gameObject.GetComponent<Stat>().Initialized(curHealth, maxHealth);      
+        hpbar.gameObject.GetComponent<Stat>().Initialized(curHealth, maxHealth);
+        hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
         facingRight = true;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();

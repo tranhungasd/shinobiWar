@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\CameraPlayer.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\EnemyScipt.cs" />
+     <Compile Include="Assets\Scripts\EnemyStat.cs" />
      <Compile Include="Assets\Scripts\ENSwordHitScript.cs" />
      <Compile Include="Assets\Scripts\FireSkillScipt.cs" />
      <Compile Include="Assets\Scripts\getKeyOptions.cs" />

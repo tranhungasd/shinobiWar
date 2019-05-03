@@ -5,12 +5,13 @@ using UnityEngine;
 public class SwordHitScript : MonoBehaviour
 {
     public bool isHitting;
-    public int damage;
+    private int damage;
     public BoxCollider2D swordbox;
     private GameObject enemy;
     // Start is called before the first frame update
     void Start()
     {
+        damage = transform.parent.gameObject.GetComponent<MainPlayer>().damage;
         swordbox.enabled = false;
         isHitting = false;
     }
@@ -18,6 +19,7 @@ public class SwordHitScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(damage);
         //if (enemy != null)
         //{
         //    GameObject objPlayer = GameObject.FindWithTag("MainPlayer");
@@ -29,12 +31,10 @@ public class SwordHitScript : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.tag);
-
         if ((other.gameObject.tag == "enemy") && (isHitting))
         {
             //Debug.Log(isHitting);
-            //Debug.Log("hit");
+            Debug.Log("hit");
             // Đẩy lùi enemy
             enemy = other.gameObject;
             GameObject objPlayer = GameObject.FindWithTag("MainPlayer");
