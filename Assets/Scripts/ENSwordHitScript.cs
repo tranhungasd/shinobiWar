@@ -5,7 +5,7 @@ using UnityEngine;
 public class ENSwordHitScript : MonoBehaviour
 {
     public bool isHitting;
-    private int damage;
+    private float damage;
     public BoxCollider2D ENswordbox;
     private GameObject player;
     // Start is called before the first frame update

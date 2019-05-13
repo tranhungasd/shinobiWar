@@ -7,9 +7,9 @@ public class EnemyScipt : MonoBehaviour
 {
     private Animator myAnimator;   
     public int speed;
-    public int damage;
-    public int maxHealth;
-    private int curHealth;
+    public float damage;
+    public float maxHealth;
+    private float curHealth;
     private bool grounded = false;
     private GameObject playerFinder;
     private Vector3 initialPosition;
@@ -181,7 +181,7 @@ public class EnemyScipt : MonoBehaviour
             grounded = true;
         }
     }
-    public void ReceivesDamage(int damage)
+    public void ReceivesDamage(float damage)
     {
         objectInfo.SetActive(true);
         Debug.Log(damage);

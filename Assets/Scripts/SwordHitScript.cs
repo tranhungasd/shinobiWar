@@ -5,13 +5,12 @@ using UnityEngine;
 public class SwordHitScript : MonoBehaviour
 {
     public bool isHitting;
-    private int damage;
+    private float damage;
     public BoxCollider2D swordbox;
     private GameObject enemy;
     // Start is called before the first frame update
     void Start()
     {
-        damage = transform.parent.gameObject.GetComponent<MainPlayer>().damage;
         swordbox.enabled = false;
         isHitting = false;
     }
@@ -19,7 +18,6 @@ public class SwordHitScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(damage);
         //if (enemy != null)
         //{
         //    GameObject objPlayer = GameObject.FindWithTag("MainPlayer");
@@ -47,5 +45,9 @@ public class SwordHitScript : MonoBehaviour
             isHitting = false;
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.forward* 500);
         }
+    }
+    public void UpdateDamage(float newDamage)
+    {
+        damage = newDamage;
     }
 }

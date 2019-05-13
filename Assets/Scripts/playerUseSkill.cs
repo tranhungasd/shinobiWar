@@ -40,6 +40,10 @@ public class playerUseSkill : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         objPlayer = GameObject.Find("MainPlayer");
         paraPlayer = objPlayer.GetComponent<ParameterPlayer>();
+        swordHitbox.GetComponent<SwordHitScript>().UpdateDamage(paraPlayer.getDamage("DMG0"));
+        prefabsSpell[0].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG1"));
+        prefabsSpell[2].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG2"));
+        prefabsSpell[4].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG3"));
     }
 
     // Update is called once per frame

@@ -9,11 +9,11 @@ public class MainPlayer : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private Vector2 direction;
+    public ParameterPlayer playerStats;
     public float jumpHeight;
-    public int damage;
     public WallClingScript wallClingBox;
-    public int maxHealth;
-    private int curHealth;
+    private float maxHealth;
+    private float curHealth;
     public GameObject hpbar;
     public TextMeshProUGUI hptext;
     [SerializeField]
@@ -31,7 +31,8 @@ public class MainPlayer : MonoBehaviour
     double jumptime = 1.0;
     void Start()
     {
-        curHealth = maxHealth;
+        curHealth = playerStats.getCurHeath();
+        maxHealth = playerStats.getTotalHealth();
         hpbar.gameObject.GetComponent<Stat>().Initialized(curHealth, maxHealth);
         hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
         facingRight = true;
@@ -177,7 +178,7 @@ public class MainPlayer : MonoBehaviour
             jump = false;
        }
     }
-    public void ReceivesDamage(int damage)
+    public void ReceivesDamage(float damage)
     {
        curHealth -= damage;
        hpbar.GetComponent<Stat>().Initialized(curHealth, maxHealth);

@@ -66,7 +66,7 @@ public class ParameterPlayer : MonoBehaviour
         Debug.Log("skill " + skill);
         StartCoroutine(waitSkill(skill));
         skill = -1;
-    } 
+    }
     IEnumerator waitSkill(int stt)
     {
         waitRecSkill[stt] = true;
@@ -156,22 +156,52 @@ public class ParameterPlayer : MonoBehaviour
         }
         StartCoroutine(reWrite());
         StartCoroutine(updateStat(name, cur, total));
-    } 
-/*
-HP/10000/10000
-EXP/10000/10000
-LV/1/1
-DMG0/100/100
-DMG1/200/200
-DMG2/500/500
-DMG3/700/700
-DMG4/1000/1000
-DMG5/2500/2500
-TIME0/1/1
-TIME1/3/3
-TIME2/10/10
-TIME3/7/7
-TIME4/15/15
-TIME5/40/40
-*/
+    }
+    public float getCurHeath()
+    {
+        return getCur("HP");
+    }
+    public float getTotalHealth()
+    {
+        return getTotal("HP");
+    }
+    public void UpdateHealth(float curHealth, float totalHealth)
+    {
+        Change("HP", curHealth, totalHealth);
+    }
+    public float getCurExp()
+    {
+        return getCur("EXP");
+    }
+    public float getTotalExp()
+    {
+        return getTotal("EXP");
+    }
+    public void UpdateExp(float curEXP, float totalEXP)
+    {
+        Change("EXP", curEXP, totalEXP);
+    }
+    public float getDamage(string name)
+    {
+        return getCur(name);
+    }
+    public void updateDamage(string name, float curDamage)
+    {
+        Change(name, curDamage, curDamage);
+    }
+    /*
+    HP/10000/10000
+    EXP/10000/10000
+    LV/1/1
+    DMG0/100/100
+    DMG1/200/200
+    DMG2/400/400
+    DMG3/700/700
+    TIME0/1/1
+    TIME1/3/3
+    TIME2/10/10
+    TIME3/7/7
+    TIME4/15/15
+    TIME5/40/40
+    */
 }

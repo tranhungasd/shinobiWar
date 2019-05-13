@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShurikenScript : MonoBehaviour
 {
-    public int damage;
+    private float damage;
     private float existtime = 2;
     private GameObject enemy;
 
@@ -38,5 +38,9 @@ public class ShurikenScript : MonoBehaviour
             col.gameObject.GetComponent<EnemyScipt>().ReceivesDamage(damage);
             Destroy(this.gameObject);
         }
+    }
+    public void UpdateDamage(float newDamage)
+    {
+        damage = newDamage;
     }
 }
