@@ -39,7 +39,6 @@ public class Stat : MonoBehaviour
     }
     void Start()
     {
-        
         content = GetComponent<Image>();
     }
     void Update()
@@ -50,6 +49,5 @@ public class Stat : MonoBehaviour
     {
         myMaxValue = maxValue;
         myCurrentValue = currentValue;
-        
     }
 }

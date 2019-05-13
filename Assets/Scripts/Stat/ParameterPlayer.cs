@@ -10,12 +10,19 @@ using System.Linq;
 public class ParameterPlayer : MonoBehaviour
 {
     public TextMeshProUGUI tmpTxt;
+    [SerializeField]
+    private Stat hpbar;
+    
     private string input;
     SwordHitScript swordDamage;
     [SerializeField]
-    private Stat health;
+    private TextMeshProUGUI hptext;
+    [SerializeField]
+    private TextMeshProUGUI leveltext;
     [SerializeField]
     private Stat exp;
+    [SerializeField]
+    private TextMeshProUGUI exptext;
     [SerializeField]
     private Stat[] statSkill = new Stat[6];
     public int skill { get; set; }
@@ -33,8 +40,11 @@ public class ParameterPlayer : MonoBehaviour
         swordDamage = GetComponent<SwordHitScript>();
         skill = -1;
         ReadAll();
-        health.Initialized(getCur("HP"), getTotal("HP"));
+        leveltext.text = getLevel().ToString();
         exp.Initialized(getCur("EXP"), getTotal("EXP"));
+        exptext.text = Mathf.Floor((getCur("EXP") / getTotal("EXP")) * 100) + "%";
+        hpbar.Initialized(getCur("HP"), getTotal("HP"));
+        hptext.text = Mathf.Floor((getCur("HP") / getTotal("HP")) * 100) + "%";
         for (int i = 0; i < 6; i++)
         {
             statSkill[i].Initialized(getCur("TIME" + i.ToString()), getTotal("TIME" + i.ToString()));
@@ -42,6 +52,13 @@ public class ParameterPlayer : MonoBehaviour
     }
     void Update()
     {
+        hpbar.Initialized(getCur("HP"), getTotal("HP"));
+        if (getCurExp() >= getTotalExp())
+        {
+            levelUp();
+            leveltext.text = getLevel().ToString();
+            UpdateExp(getCurExp()-getTotalExp());
+        }
     }
     private void useSkill()
     {
@@ -112,11 +129,13 @@ public class ParameterPlayer : MonoBehaviour
     {
         if (name == "HP")
         {
-            health.Initialized(cur, total);
+            hpbar.Initialized(cur, total);
+            hptext.text = Mathf.Floor((getCur("HP") / getTotal("HP")) * 100) + "%";
         }
         if (name == "EXP")
         {
             exp.Initialized(cur, total);
+            exptext.text = Mathf.Floor((getCur("EXP") / getTotal("EXP")) * 100) + "%";
         }
         yield return null;
     }
@@ -143,6 +162,10 @@ public class ParameterPlayer : MonoBehaviour
         StartCoroutine(reWrite());
         StartCoroutine(updateStat(name, cur, total));
     }
+    public void levelUp()
+    {
+        Change("LV", getCur("LV") + 1, getTotal("LV"));
+    }
     public float getCurHeath()
     {
         ReadAll();
@@ -153,10 +176,10 @@ public class ParameterPlayer : MonoBehaviour
         ReadAll();
         return getTotal("HP");
     }
-    public void UpdateHealth(float curHealth, float totalHealth)
+    public void UpdateHealth(float curHealth)
     {
         ReadAll();
-        Change("HP", curHealth, totalHealth);
+        Change("HP", curHealth, getTotal("HP"));
     }
     public float getCurExp()
     {
@@ -168,10 +191,15 @@ public class ParameterPlayer : MonoBehaviour
         ReadAll();
         return getTotal("EXP");
     }
-    public void UpdateExp(float curEXP, float totalEXP)
+    public void UpdateExp(float curEXP)
     {
         ReadAll();
-        Change("EXP", curEXP, totalEXP);
+        Change("EXP", curEXP, getTotal("EXP"));
+    }
+    public void AddExp(float addEXP)
+    {
+        ReadAll();
+        Change("EXP", getCur("EXP") + addEXP, getTotal("EXP"));
     }
     public float getDamage(string name)
     {
@@ -183,10 +211,14 @@ public class ParameterPlayer : MonoBehaviour
         ReadAll();
         Change(name, curDamage, curDamage);
     }
+    public float getLevel()
+    {
+        return getCur("LV");
+    }
     /*
     HP/10000/10000
     EXP/10000/10000
-    LV/1/1
+    LV/1/99
     DMG0/100/100
     DMG1/200/200
     DMG2/400/400

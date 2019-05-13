@@ -14,8 +14,7 @@ public class MainPlayer : MonoBehaviour
     public WallClingScript wallClingBox;
     private float maxHealth;
     private float curHealth;
-    public GameObject hpbar;
-    public TextMeshProUGUI hptext;
+    
     [SerializeField]
     private float speed = 4;
     private bool facingRight;
@@ -33,8 +32,7 @@ public class MainPlayer : MonoBehaviour
     {
         curHealth = playerStats.getCurHeath();
         maxHealth = playerStats.getTotalHealth();
-        hpbar.gameObject.GetComponent<Stat>().Initialized(curHealth, maxHealth);
-        hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
+        
         facingRight = true;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
@@ -153,7 +151,6 @@ public class MainPlayer : MonoBehaviour
             wallClingBox.iswallcling = false;
             grounded = false;
         }
-
     }
     private IEnumerator SlideController()
     {
@@ -181,10 +178,9 @@ public class MainPlayer : MonoBehaviour
     public void ReceivesDamage(float damage)
     {
        curHealth -= damage;
-       hpbar.GetComponent<Stat>().Initialized(curHealth, maxHealth);
-       hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
+        playerStats.UpdateHealth(curHealth);
+       
     }
-  
     private void FreezeGravity()
     {
         myRigidbody2D.gravityScale = 0;

@@ -1062,6 +1062,26 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 311040795}
+    - target: {fileID: 5960516257050508560, guid: f00cfcbd8685f1a4f85799548af3aec4,
+        type: 3}
+      propertyPath: hpbar
+      value: 
+      objectReference: {fileID: 311040795}
+    - target: {fileID: 5960516257050508560, guid: f00cfcbd8685f1a4f85799548af3aec4,
+        type: 3}
+      propertyPath: hptext
+      value: 
+      objectReference: {fileID: 968900770}
+    - target: {fileID: 5960516257050508560, guid: f00cfcbd8685f1a4f85799548af3aec4,
+        type: 3}
+      propertyPath: exptext
+      value: 
+      objectReference: {fileID: 1145667943}
+    - target: {fileID: 5960516257050508560, guid: f00cfcbd8685f1a4f85799548af3aec4,
+        type: 3}
+      propertyPath: leveltext
+      value: 
+      objectReference: {fileID: 811186825}
     - target: {fileID: 5801171423547083784, guid: f00cfcbd8685f1a4f85799548af3aec4,
         type: 3}
       propertyPath: cam
@@ -1174,6 +1194,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00cfcbd8685f1a4f85799548af3aec4, type: 3}
+--- !u!114 &811186825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2275138496801539968, guid: 5e452761f643ead4ea7dc55964c714f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 944101977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &837799569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1288,12 +1320,12 @@ PrefabInstance:
     - target: {fileID: 2275138497273907706, guid: 5e452761f643ead4ea7dc55964c714f1,
         type: 3}
       propertyPath: m_text
-      value: "HP/10000/10000\r\nEXP/10000/10000\r\nLV/1/1\nDMG0/100/100\r\nDMG1/200/200\r\nDMG2/500/500\r\nDMG3/700/700\r\nTIME0/0.5/0.5\r\nTIME1/1/1\r\nTIME2/1/1\r\nTIME3/1/1\nTIME4/1/1\nTIME5/1/1\r"
+      value: "HP/10000/10000\r\nEXP/0/100000\nLV/1/1\nDMG0/100/100\r\nDMG1/200/200\r\nDMG2/500/500\r\nDMG3/700/700\r\nTIME0/0.5/0.5\r\nTIME1/1/1\r\nTIME2/1/1\r\nTIME3/1/1\nTIME4/1/1\nTIME5/1/1\r"
       objectReference: {fileID: 0}
     - target: {fileID: 2275138497273907706, guid: 5e452761f643ead4ea7dc55964c714f1,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 163
+      value: 159
       objectReference: {fileID: 0}
     - target: {fileID: 2275138497273907706, guid: 5e452761f643ead4ea7dc55964c714f1,
         type: 3}
@@ -11891,6 +11923,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1145667943 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2275138497665410287, guid: 5e452761f643ead4ea7dc55964c714f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 944101977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1154860157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12052,6 +12096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: damage
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164392112629024106, guid: c4e15f620cf5e8346ac8631ee6c90c4c,
+        type: 3}
+      propertyPath: killreward
+      value: 150000
       objectReference: {fileID: 0}
     - target: {fileID: 1164392113829349389, guid: c4e15f620cf5e8346ac8631ee6c90c4c,
         type: 3}

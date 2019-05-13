@@ -10,6 +10,8 @@ public class EnemyScipt : MonoBehaviour
     public float damage;
     public float maxHealth;
     private float curHealth;
+    [SerializeField]
+    private float killreward;
     private bool grounded = false;
     private GameObject playerFinder;
     private Vector3 initialPosition;
@@ -50,6 +52,10 @@ public class EnemyScipt : MonoBehaviour
         
         if (curHealth == 0 || curHealth < 0)
         {
+            if(dist < 20)
+            {
+                playerFinder.GetComponent<ParameterPlayer>().UpdateExp(killreward);
+            }
             Destroy(this.gameObject);
         }
         if (dist < maxPlayerDist)
@@ -186,7 +192,7 @@ public class EnemyScipt : MonoBehaviour
         objectInfo.SetActive(true);
         curHealth -= damage;
         hpbar.GetComponent<Stat>().Initialized(curHealth, maxHealth);
-        hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
+        hptext.text = Mathf.Floor((curHealth / maxHealth) * 100) + "%";
     }
     private void setIdle()
     {
