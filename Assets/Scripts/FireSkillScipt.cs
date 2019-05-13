@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireSkillScipt : MonoBehaviour
 {
    
-    public int damage;
+    public float damage;
     private Animator myAnimator;
     private float existtime = 2;
     private GameObject enemy;
@@ -30,6 +30,7 @@ public class FireSkillScipt : MonoBehaviour
         {
             //calls ReceivesDamage() in enemy script
             // Đẩy lùi enemy
+            Debug.Log(damage);
             enemy = col.gameObject;
             GameObject objPlayer = GameObject.FindWithTag("MainPlayer");
             Vector3 thePosEnemy = enemy.GetComponent<Rigidbody2D>().transform.localPosition;
@@ -46,5 +47,11 @@ public class FireSkillScipt : MonoBehaviour
         col.gameObject.GetComponent<EnemyScipt>().ReceivesDamage(damage);
         yield return new WaitForSeconds(0.1f);
         Destroy(this.gameObject);
+    }
+    public void UpdateDamage(float newDamage)
+    {
+        Debug.Log(damage);
+        damage = newDamage;
+
     }
 }

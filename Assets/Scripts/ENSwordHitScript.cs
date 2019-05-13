@@ -30,7 +30,6 @@ public class ENSwordHitScript : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.tag);
 
         if ((other.gameObject.tag == "MainPlayer") && (isHitting))
         {

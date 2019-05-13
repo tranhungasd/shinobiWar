@@ -184,9 +184,7 @@ public class EnemyScipt : MonoBehaviour
     public void ReceivesDamage(float damage)
     {
         objectInfo.SetActive(true);
-        Debug.Log(damage);
         curHealth -= damage;
-        Debug.Log(curHealth);
         hpbar.GetComponent<Stat>().Initialized(curHealth, maxHealth);
         hptext.text = (double)(((double)curHealth / (double)maxHealth) * 100) + "%";
     }

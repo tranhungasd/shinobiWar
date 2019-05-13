@@ -42,20 +42,6 @@ public class ParameterPlayer : MonoBehaviour
     }
     void Update()
     {
-        //ReadAll();
-        useSkill();
-        if (Input.GetKey(KeyCode.G))
-        {
-            line.current[0] = line.current[0] - 10;
-            Change("HP", line.current[0], line.total[0]);
-            //Debug.Log(line.current[0].ToString());
-        }
-        if (Input.GetKey(KeyCode.H))
-        {
-            line.current[1] = line.current[1] - 10;
-            Change("EXP", line.current[1], line.total[1]);
-            //Debug.Log(line.current[0].ToString());
-        }
     }
     private void useSkill()
     {
@@ -144,7 +130,7 @@ public class ParameterPlayer : MonoBehaviour
         yield return null;
     }
     private void Change(string name, float cur, float total)
-    {
+    {   
         for (int i = 0; i <= line.count; i++)
         {
             if (line.name[i] == name)
@@ -159,34 +145,42 @@ public class ParameterPlayer : MonoBehaviour
     }
     public float getCurHeath()
     {
+        ReadAll();
         return getCur("HP");
     }
     public float getTotalHealth()
     {
+        ReadAll();
         return getTotal("HP");
     }
     public void UpdateHealth(float curHealth, float totalHealth)
     {
+        ReadAll();
         Change("HP", curHealth, totalHealth);
     }
     public float getCurExp()
     {
+        ReadAll();
         return getCur("EXP");
     }
     public float getTotalExp()
     {
+        ReadAll();
         return getTotal("EXP");
     }
     public void UpdateExp(float curEXP, float totalEXP)
     {
+        ReadAll();
         Change("EXP", curEXP, totalEXP);
     }
     public float getDamage(string name)
     {
+        ReadAll();
         return getCur(name);
     }
     public void updateDamage(string name, float curDamage)
     {
+        ReadAll();
         Change(name, curDamage, curDamage);
     }
     /*

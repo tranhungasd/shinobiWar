@@ -992,6 +992,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5304561247044876305, guid: eedcf2a15b735ba458e4dcdc311be322,
         type: 3}
+    - target: {fileID: 5960516257050508655, guid: f00cfcbd8685f1a4f85799548af3aec4,
+        type: 3}
+      propertyPath: paraPlayer
+      value: 
+      objectReference: {fileID: 2039457077}
     - target: {fileID: 5960516257050508560, guid: f00cfcbd8685f1a4f85799548af3aec4,
         type: 3}
       propertyPath: tmpTxt
@@ -1279,6 +1284,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275138497273907706, guid: 5e452761f643ead4ea7dc55964c714f1,
+        type: 3}
+      propertyPath: m_text
+      value: "HP/10000/10000\r\nEXP/10000/10000\r\nLV/1/1\nDMG0/100/100\r\nDMG1/200/200\r\nDMG2/500/500\r\nDMG3/700/700\r\nTIME0/0.5/0.5\r\nTIME1/1/1\r\nTIME2/1/1\r\nTIME3/1/1\nTIME4/1/1\nTIME5/1/1\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275138497273907706, guid: 5e452761f643ead4ea7dc55964c714f1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 163
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275138497273907706, guid: 5e452761f643ead4ea7dc55964c714f1,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275138497273907706, guid: 5e452761f643ead4ea7dc55964c714f1,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275138497273907706, guid: 5e452761f643ead4ea7dc55964c714f1,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2275138496376271666, guid: 5e452761f643ead4ea7dc55964c714f1,
         type: 3}
@@ -12013,6 +12043,16 @@ PrefabInstance:
       propertyPath: hptext
       value: 
       objectReference: {fileID: 1778474051}
+    - target: {fileID: 1164392112629024106, guid: c4e15f620cf5e8346ac8631ee6c90c4c,
+        type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164392112629024106, guid: c4e15f620cf5e8346ac8631ee6c90c4c,
+        type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1164392113829349389, guid: c4e15f620cf5e8346ac8631ee6c90c4c,
         type: 3}
       propertyPath: m_RootOrder

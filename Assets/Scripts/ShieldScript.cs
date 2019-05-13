@@ -7,12 +7,10 @@ public class ShieldScript : MonoBehaviour
     private GameObject enemy;
     private GameObject player;
     private GameObject shieldPoint;
-    private GameObject shield;
     // Start is called before the first frame update
     void Start()
     {
         shieldPoint = GameObject.Find("shieldpoint");
-        shield = GameObject.Find("Shield");
     }
     // Update is called once per frame
     void Update()

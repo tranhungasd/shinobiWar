@@ -16,7 +16,7 @@ public class playerUseSkill : MonoBehaviour
     private bool isDfn = false;
     
     GameObject objPlayer;
-    ParameterPlayer paraPlayer;
+    private ParameterPlayer paraPlayer;
     [SerializeField]
     private GameObject[] prefabsSpell;
     public AudioSource buttonSpaceAudio;
@@ -39,11 +39,11 @@ public class playerUseSkill : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         objPlayer = GameObject.Find("MainPlayer");
-        paraPlayer = objPlayer.GetComponent<ParameterPlayer>();
-        swordHitbox.GetComponent<SwordHitScript>().UpdateDamage(paraPlayer.getDamage("DMG0"));
-        prefabsSpell[0].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG1"));
-        prefabsSpell[2].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG2"));
-        prefabsSpell[4].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG3"));
+        paraPlayer= objPlayer.GetComponent<ParameterPlayer>();
+        
+        
+        
+        
     }
 
     // Update is called once per frame
@@ -72,11 +72,13 @@ public class playerUseSkill : MonoBehaviour
             startAttack();
             swordHitbox.swordbox.enabled = true;
             swordHitbox.isHitting = true;
+            swordHitbox.GetComponent<SwordHitScript>().UpdateDamage(paraPlayer.getDamage("DMG0"));
             StartCoroutine(AttackNormal());
             
         }
         if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && paraPlayer.waitRecSkill[1] == false)
         {
+            prefabsSpell[0].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG1"));
             buttonQAudio.Play();
             startAttack();
             StartCoroutine(Attack1());
@@ -89,6 +91,7 @@ public class playerUseSkill : MonoBehaviour
         }
         if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && paraPlayer.waitRecSkill[3] == false)
         {
+            prefabsSpell[2].GetComponent<FireSkillScipt>().UpdateDamage(paraPlayer.getDamage("DMG2"));
             buttonEAudio.Play();
             startAttack();
             StartCoroutine(Attack3());
@@ -101,6 +104,7 @@ public class playerUseSkill : MonoBehaviour
         }
         if (Input.GetKeyDown(keycodes[4]) && Input.GetKey(keycodes[4]) && paraPlayer.waitRecSkill[5] == false)
         {
+            prefabsSpell[4].GetComponent<RasenganScript>().UpdateDamage(paraPlayer.getDamage("DMG3"));
             buttonTAudio.Play();
             startAttack();
             StartCoroutine(Ultimate());

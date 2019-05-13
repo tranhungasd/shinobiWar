@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RasenganScript : MonoBehaviour
 {
-    public int damage;
+    public float damage;
     private Animator myAnimator;
     private float existtime = 2;
     private GameObject objPlayer;
@@ -51,5 +51,10 @@ public class RasenganScript : MonoBehaviour
         col.gameObject.GetComponent<EnemyScipt>().ReceivesDamage(damage);
         yield return new WaitForSeconds(0.55f);
         Destroy(this.gameObject);
+    }
+    public void UpdateDamage(float newDamage)
+    {
+        Debug.Log(damage);
+        damage = newDamage;
     }
 }
