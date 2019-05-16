@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
+    // Load từng item, positem = line.item
     [SerializeField]
     private int posItem;
     private int id;
@@ -37,21 +38,25 @@ public class Item : MonoBehaviour
         {
             return;
         }
+        ed.ReadAll(); // <-- thiếu mỗi nó @@ :v đỉnh kao
         IEUpdate(_id);
     }
-    public void IEUpdate(int _id)
+    private void IEUpdate(int _id)
     {
+        //hàm nào gọi cái này m, ở script khác ấy
+        // k có :v
         id = ed.line.id[_id];
         quantity = ed.line.quantity[_id];
+        //Debug.Log(_id + " " + quantity);
         if (quantity == 0)
         {
             ed.line.id[_id] = 0;
             tmpQuantity.SetText("");
-            ed.Change(ed.line);
+            ed.Change(ed.line.item[_id], 0, 0); //k có vật phẩm
         }
         else
         {
-            tmpQuantity.SetText(quantity.ToString());
+            tmpQuantity.SetText(quantity.ToString()); //ghi số lượng vp
         }
         oldImage = objItem.GetComponent<Image>();
         //Debug.Log(quantity.ToString());

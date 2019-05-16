@@ -21,12 +21,13 @@ public class Score : MonoBehaviour
     void Update()
     {
         StartCoroutine(UpdateScore());
+        ed.ReadAll();
     }
     IEnumerator UpdateScore()
     {
         ed = GetComponent<EquipDatabase>();
         tmpGold.text = ed.line.quantity[32].ToString("N0");
         tmpPoint.text = ed.line.quantity[33].ToString("N0");
-        yield return new WaitForSeconds(5);
+        yield return null;
     }
 }

@@ -71,6 +71,7 @@ public class GiftCode : MonoBehaviour
     public void ReceiveAllSword()
     {
         EquipDatabase ed = GetComponent<EquipDatabase>();
+        ed.ReadAll();
         //ed.input = txtED.text;
         //ed.ReadAllNew(ed.input);
         int sword = -3;
@@ -81,14 +82,15 @@ public class GiftCode : MonoBehaviour
                 sword = sword + 4;
                 ed.line.id[i] = sword;
                 ed.line.quantity[i] = ed.line.quantity[i] + 1;
-                //Debug.Log(ed.line.id[i].ToString());
+                ed.Change(i, sword, ed.line.quantity[i]);
+                //Debug.Log(ed.line.id[i].ToString() +" " + ed.line.quantity[i]);
+                
             }
             if (sword > 20)
             {
                 break;
             }
         }
-        ed.SortItem();
         //Debug.Log("tang len .");
     }
     public void ReceiveAllClothes()

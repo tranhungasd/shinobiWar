@@ -16,7 +16,7 @@ public class EquipDatabase : MonoBehaviour
         public int[] quantity = new int[35];
         public int count;
     }
-    public tagParameter line = new tagParameter();
+    public tagParameter line;
     void Start()
     {
         ReadAll();
@@ -25,10 +25,11 @@ public class EquipDatabase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void ReadAll()
     {
+        line = new tagParameter();
         input = tmpTxt.text;
         string pattern = "\n";
         int i = 0;
@@ -43,73 +44,51 @@ public class EquipDatabase : MonoBehaviour
                 line.item[i] = int.Parse(TextFollowing(tags[0], "ITEM"));
                 line.id[i] = int.Parse(tags[1]);
                 line.quantity[i] = int.Parse(tags[2]);
-                //Debug.Log(line.id[i]);
-                Debug.Log(line.count + "-" + line.item[i] + "-" + line.id[i].ToString() + "-" + line.quantity[i].ToString() + "\n");
-                i++;
-            }
-        }
-        SortItem();
-    }
-    public void reRead()
-    {
-        string pattern = "\n";
-        int i = 0;
-        string[] elements = Regex.Split(input, pattern);
-        foreach (string m in elements)
-        {
-            if (m != "")
-            {
-                line.count = i;
-                string pat = "/";
-                string[] tags = Regex.Split(m, pat);
-                line.item[i] = int.Parse(TextFollowing(tags[0], "ITEM"));
-                line.id[i] = int.Parse(tags[1]);
-                line.quantity[i] = int.Parse(tags[2]);
-                //Debug.Log(line.id[i]);
+                //Debug.Log(line.item[i].ToString() + "  --  " + line.count.ToString());
                 //Debug.Log(line.count + "-" + line.item[i] + "-" + line.id[i].ToString() + "-" + line.quantity[i].ToString() + "\n");
                 i++;
             }
         }
+        //SortItem(); bỏ sort q
     }
     public void SortItem()
     {
         int isItem = 0;
-        int[] isQuantity = new int[35];
-        int[] isID = new int[35];
+        tagParameter newLine = new tagParameter();
         int countItem = 32;
-        for (int i = 0; i < countItem; i++)
+        line.item[32] = 32;
+        line.item[33] = 33;
+        for (int i = 0; i < countItem - 1; i++)
         {
-            if (line.id[i] != 0 && line.quantity[i] !=0)
-            {
-                isQuantity[isItem] = line.quantity[i];
-                isID[isItem] = line.id[i];
-                isItem++;
-            }
-        }
-        for (int i = 0; i < countItem; i++)
-        {
-            line.id[i] = 0;
-            line.quantity[i] = 0;
-        }
-        for (int i = 0; i <= isItem; i++)
-        {
-            line.id[i] = isID[i];
-            line.quantity[i] = isQuantity[i];
-        }
-        for (int i = 0; i < isItem; i++)
-        {
-            for (int j = i + 1; j <= isItem; j++)
+            for (int j = i + 1; j < countItem; j++)
             {
                 if (line.id[i] == line.id[j])
                 {
-                    line.quantity[i] += line.quantity[j];
+                    line.quantity[i] = line.quantity[i] + line.quantity[j];
                     line.id[j] = 0;
                     line.quantity[j] = 0;
                 }
             }
         }
-        Change(line);
-    }
+        for (int i = 0; i < countItem; i++)
+        {
+            if (line.id[i] != 0 && line.quantity[i] != 0)
+            {
+                newLine.id[isItem] = line.id[i];
+                newLine.quantity[isItem] = line.quantity[i];
+                isItem++;
+            }
+        }
+        tmpTxt.text = "";
+        for (int i = 0; i < 34; i++)
+        {
+            line.item[i] = i;
+            line.id[i] = newLine.id[i];
+            line.quantity[i] = newLine.quantity[i];
+            tmpTxt.SetText(tmpTxt.text + "ITEM" + i.ToString() + "/" + line.id[i].ToString() + "/" + line.quantity[i].ToString() + "\n");
+            //Debug.Log("ITEM" + i.ToString());
+        }        
+    } 
     public bool isFull()
     {
         if (line.count < 31)
@@ -121,7 +100,6 @@ public class EquipDatabase : MonoBehaviour
     public void ChangeGold(int _gold)
     {
         line.id[32] += _gold;
-        Change(line);
     }
     public static string TextFollowing(string searchTxt, string value)
     {
@@ -139,21 +117,25 @@ public class EquipDatabase : MonoBehaviour
         }
         return null;
     }
-    public void Change(tagParameter ED)
+    public void Change(int _item, int _id, int _quantity)
     {
-        //tmpTxt.text = "";
-        input = "";
-        for (int i = 0; i <= ED.count; i++)
+        for (int i = 0; i <= line.count; i++)
         {
-            //Debug.Log("ITEM " + ED.id[i].ToString());
-            line.item[i] = ED.item[i];
-            line.id[i] = ED.id[i];
-            line.quantity[i] = ED.quantity[i];
-            input += "ITEM" + ED.item[i].ToString() + "/" + ED.id[i].ToString() + "/" + ED.quantity[i].ToString() + "\n";
+            if (line.item[i] == _item)
+            {
+                line.id[i] = _id;
+                line.quantity[i] = _quantity;
+                break;
+            }
         }
-        tmpTxt.text = input;
-        //Debug.Log(txtDB);
-        //ReadAll();
-        reRead();
+        reWrite();
+    }
+    public void reWrite()
+    {
+        tmpTxt.text = "";
+        for (int i = 0; i <= line.count; i++)
+        {
+            tmpTxt.SetText(tmpTxt.text + "ITEM" + i.ToString() + "/" + line.id[i].ToString() + "/" + line.quantity[i].ToString() + "\n");
+        }
     }
 }

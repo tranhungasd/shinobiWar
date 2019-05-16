@@ -46,8 +46,8 @@ public class MenuEquip : MonoBehaviour
         int idItem = getIDItem(item);
         int quantityItem = getQuantity(item);
         EquipDatabase ed = GetComponent<EquipDatabase>();
-        ed.line.quantity[item]--;
-        ed.SortItem();
+        ed.Change(item, idItem, quantityItem - 1);
+        ed.ReadAll();
 
     }
     public void Delete()
@@ -60,6 +60,8 @@ public class MenuEquip : MonoBehaviour
     }
     public void checkItem()
     {
+        EquipDatabase ed = GetComponent<EquipDatabase>();
+        ed.ReadAll();
         int item = PlayerPrefs.GetInt("item");
         int idItem = getIDItem(item);
         int quantityItem = getQuantity(item);
@@ -69,7 +71,6 @@ public class MenuEquip : MonoBehaviour
             Menu.SetActive(false);
             return;
         }
-        EquipDatabase ed = GetComponent<EquipDatabase>();
         id = ed.line.id[item];
         quantity = ed.line.quantity[item];
         tmpDes.SetText(line.name[id] + "\nQuantity: " + quantity.ToString());
@@ -81,10 +82,12 @@ public class MenuEquip : MonoBehaviour
     }
     private int getIDItem(int _item)
     {
+        Menu.GetComponent<EquipDatabase>().ReadAll();
         return Menu.GetComponent<EquipDatabase>().line.id[_item];
     }
     private int getQuantity(int _item)
     {
+        Menu.GetComponent<EquipDatabase>().ReadAll();
         return Menu.GetComponent<EquipDatabase>().line.quantity[_item]; 
     }
     private void ReadNameItem()

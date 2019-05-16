@@ -65,11 +65,14 @@
     <Compile Include="Assets\changescene.cs" />
     <Compile Include="Assets\ControllCamera.cs" />
     <Compile Include="Assets\scene.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\AbilitesStats.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\AbilitiesControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\btnOfMenu.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\ContinueGameScript.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\EquipControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\MenuControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\MissionControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonGUI\NewgameScript.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\NoticeControl.cs" />
     <Compile Include="Assets\Scripts\ButtonGUI\ProfileControl.cs" />
     <Compile Include="Assets\Scripts\CameraPlayer.cs" />
@@ -97,11 +100,13 @@
     <Compile Include="Assets\Scripts\Stat\Stat.cs" />
     <Compile Include="Assets\Scripts\SwordHitScript.cs" />
     <Compile Include="Assets\Scripts\WallClingScript.cs" />
+    <None Include="Assets\Saves\systemSave.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Ninja Files\Read Me.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\Saves\currentScene.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
@@ -109,6 +114,7 @@
     <None Include="Assets\Image\GUI\License premium.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Saves\newGame.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
