@@ -16,6 +16,8 @@ TagManager:
   - skill4
   - skill5
   - enemy
+  - item
+  - menuItem
   layers:
   - Default
   - TransparentFX
