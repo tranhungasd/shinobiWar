@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ShieldScript : MonoBehaviour
 {
+    public bool aquired;
     private float existtime = 5;
     private GameObject enemy;
     private GameObject player;

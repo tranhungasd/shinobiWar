@@ -1,1 +1,1 @@
-Assets/Scenes/MiniMap2/Map2Round2.unity
+Assets/Scenes/MiniMap2/Map2Round2 linh.unity

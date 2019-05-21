@@ -15,7 +15,7 @@ public class ClickItem : MonoBehaviour
         }
         item = int.Parse(GetComponent<Transform>().name);
         PlayerPrefs.SetInt("item", item);
-        Debug.Log(item.ToString());
+        //Debug.Log(item.ToString());
         menu.SetActive(true);
     }
 }

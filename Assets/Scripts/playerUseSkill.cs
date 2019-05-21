@@ -11,10 +11,11 @@ public class playerUseSkill : MonoBehaviour
     private Animator myAnimator;
     private SpriteRenderer sp;
     public TextMeshProUGUI[] keys = new TextMeshProUGUI[5];
+
     private KeyCode[] keycodes = new KeyCode[5];
     public bool isAtk = false;
     private bool isDfn = false;
-    
+
     GameObject objPlayer;
     private ParameterPlayer paraPlayer;
     [SerializeField]
@@ -39,11 +40,11 @@ public class playerUseSkill : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         objPlayer = GameObject.Find("MainPlayer");
-        paraPlayer= objPlayer.GetComponent<ParameterPlayer>();
-        
-        
-        
-        
+        paraPlayer = objPlayer.GetComponent<ParameterPlayer>();
+
+
+
+
     }
 
     // Update is called once per frame
@@ -51,8 +52,12 @@ public class playerUseSkill : MonoBehaviour
     {
         ReadOptions();
         objPlayer = GameObject.Find("MainPlayer");
+        swordHitbox.GetComponent<SwordHitScript>().UpdateDamage(paraPlayer.getDamage("DMG0"));
+        prefabsSpell[0].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG1"));
+        prefabsSpell[2].GetComponent<FireSkillScipt>().UpdateDamage(paraPlayer.getDamage("DMG3"));
+        prefabsSpell[4].GetComponent<RasenganScript>().UpdateDamage(paraPlayer.getDamage("DMG5"));
         if (!isAtk)
-        { 
+        {
             GetInput();
         }
     }
@@ -72,42 +77,64 @@ public class playerUseSkill : MonoBehaviour
             startAttack();
             swordHitbox.swordbox.enabled = true;
             swordHitbox.isHitting = true;
-            swordHitbox.GetComponent<SwordHitScript>().UpdateDamage(paraPlayer.getDamage("DMG0"));
+
             StartCoroutine(AttackNormal());
-            
+            paraPlayer.useSkill();
+
         }
         if (Input.GetKeyDown(keycodes[0]) && Input.GetKey(keycodes[0]) && paraPlayer.waitRecSkill[1] == false)
         {
-            prefabsSpell[0].GetComponent<ShurikenScript>().UpdateDamage(paraPlayer.getDamage("DMG1"));
-            buttonQAudio.Play();
-            startAttack();
-            StartCoroutine(Attack1());
+            if (paraPlayer.getLevel() >= 3)
+            {
+                prefabsSpell[0].GetComponent<ShurikenScript>().aquired = true;
+                buttonQAudio.Play();
+                startAttack();
+                StartCoroutine(Attack1());
+                paraPlayer.useSkill();
+            }
         }
         if (Input.GetKeyDown(keycodes[1]) && Input.GetKey(keycodes[1]) && paraPlayer.waitRecSkill[2] == false)
         {
-            startDefend();
-            buttonWAudio.Play();
-            StartCoroutine(ShieldDefend());
+            if (paraPlayer.getLevel() >= 5)
+            {
+                prefabsSpell[1].GetComponent<ShieldScript>().aquired = true;
+                startDefend();
+                buttonWAudio.Play();
+                StartCoroutine(ShieldDefend());
+                paraPlayer.useSkill();
+            }
         }
         if (Input.GetKeyDown(keycodes[2]) && Input.GetKey(keycodes[2]) && paraPlayer.waitRecSkill[3] == false)
         {
-            prefabsSpell[2].GetComponent<FireSkillScipt>().UpdateDamage(paraPlayer.getDamage("DMG2"));
-            buttonEAudio.Play();
-            startAttack();
-            StartCoroutine(Attack3());
+            if (paraPlayer.getLevel() >= 6)
+            {
+                prefabsSpell[2].GetComponent<FireSkillScipt>().aquired = true;
+                buttonEAudio.Play();
+                startAttack();
+                StartCoroutine(Attack3());
+                paraPlayer.useSkill();
+            }
         }
         if (Input.GetKeyDown(keycodes[3]) && Input.GetKey(keycodes[3]) && paraPlayer.waitRecSkill[4] == false)
         {
-            buttonRAudio.Play();
-            startAttack();
-            StartCoroutine(Teleport());
+            if (paraPlayer.getLevel() >= 8)
+            {
+                buttonRAudio.Play();
+                startAttack();
+                StartCoroutine(Teleport());
+                paraPlayer.useSkill();
+            }
         }
         if (Input.GetKeyDown(keycodes[4]) && Input.GetKey(keycodes[4]) && paraPlayer.waitRecSkill[5] == false)
         {
-            prefabsSpell[4].GetComponent<RasenganScript>().UpdateDamage(paraPlayer.getDamage("DMG3"));
-            buttonTAudio.Play();
-            startAttack();
-            StartCoroutine(Ultimate());
+            if (paraPlayer.getLevel() >= 12)
+            {
+                prefabsSpell[4].GetComponent<FireSkillScipt>().aquired = true;
+                buttonTAudio.Play();
+                startAttack();
+                StartCoroutine(Ultimate());
+                paraPlayer.useSkill();
+            }
         }
 
     }
@@ -127,12 +154,13 @@ public class playerUseSkill : MonoBehaviour
         Rigidbody2D rgbSpell = objEffSpell.GetComponent<Rigidbody2D>();
         rgbSpell.velocity = new Vector2(objPlayer.transform.localScale.x * 20f, rgbSpell.velocity.y);
         yield return new WaitForSeconds(0.1f);
-    
+
         stopAttack();
     }
     private IEnumerator ShieldDefend()
     {
-        defend();
+        paraPlayer.skill = 2;
+        yield return new WaitForSeconds(0.4f);
         GameObject objEffSpell = Instantiate(prefabsSpell[1], shieldPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(0.1f);
     }
@@ -148,7 +176,6 @@ public class playerUseSkill : MonoBehaviour
         Rigidbody2D rgbSpell = objEffSpell.GetComponent<Rigidbody2D>();
         rgbSpell.velocity = new Vector2(objPlayer.transform.localScale.x * 20f, rgbSpell.velocity.y);
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("attack");
         stopAttack();
     }
     private IEnumerator Teleport()
@@ -198,7 +225,7 @@ public class playerUseSkill : MonoBehaviour
             //StartCoroutine(moveRD2D(mainPlayer, horizontal, speed));
             Vector3 thePos = objPlayer.transform.localPosition;
             Vector3 thePosSpell = spell.transform.localPosition;
-            thePos.x = thePosSpell.x - theScale.x*2;
+            thePos.x = thePosSpell.x - theScale.x * 2;
             objPlayer.transform.localPosition = thePos;
             yield return new WaitForSeconds(0.01f);
             if (i % 3 != 0)
@@ -244,10 +271,10 @@ public class playerUseSkill : MonoBehaviour
 
         swordHitbox.isHitting = false;
         swordHitbox.swordbox.enabled = false;
-       
+
         myAnimator.SetBool("attack", false);
         ActivateLayer("MovePlayer");
-    } 
+    }
     public void ActivateLayer(string layerName)
     {
         for (int i = 0; i < myAnimator.layerCount; i++)
@@ -263,7 +290,6 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
-        myAnimator.SetFloat("defend", 0);
     }
     private void sword()
     {
@@ -272,7 +298,6 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
-        myAnimator.SetFloat("defend", 0);
     }
     private void fire()
     {
@@ -281,7 +306,6 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 1);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
-        myAnimator.SetFloat("defend", 0);
     }
     private void shuriken()
     {
@@ -290,7 +314,6 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 0);
-        myAnimator.SetFloat("defend", 0);
     }
     private void rasengan1()
     {
@@ -299,7 +322,6 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 1);
         myAnimator.SetFloat("resengan2", 0);
-        myAnimator.SetFloat("defend", 0);
     }
     public void rasengan2()
     {
@@ -308,15 +330,5 @@ public class playerUseSkill : MonoBehaviour
         myAnimator.SetFloat("fire", 0);
         myAnimator.SetFloat("rasengan1", 0);
         myAnimator.SetFloat("resengan2", 1);
-        myAnimator.SetFloat("defend", 0);
-    }
-    public void defend()
-    {
-        myAnimator.SetFloat("sword", 0);
-        myAnimator.SetFloat("shuriken", 0);
-        myAnimator.SetFloat("fire", 0);
-        myAnimator.SetFloat("rasengan1", 0);
-        myAnimator.SetFloat("resengan2", 0);
-        myAnimator.SetFloat("defend", 1);
     }
 }

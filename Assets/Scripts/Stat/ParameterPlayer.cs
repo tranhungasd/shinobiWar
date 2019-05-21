@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Text;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ParameterPlayer : MonoBehaviour
 {
     public TextMeshProUGUI tmpTxt;
+    public GameObject missionControl;
     [SerializeField]
     private Stat hpbar;
-    
+    private string scenePath;
+    public TextMeshProUGUI[] descriptions = new TextMeshProUGUI[5];
     private string input;
     SwordHitScript swordDamage;
     [SerializeField]
@@ -37,9 +42,13 @@ public class ParameterPlayer : MonoBehaviour
     private tagParameter line = new tagParameter();
     void Start()
     {
+
+        string path = Application.dataPath + "/Saves/systemSave.txt";
+        tmpTxt.text = File.ReadAllText(path);
         swordDamage = GetComponent<SwordHitScript>();
         skill = -1;
         ReadAll();
+        saveStats();
         leveltext.text = getLevel().ToString();
         exp.Initialized(getCur("EXP"), getTotal("EXP"));
         exptext.text = Mathf.Floor((getCur("EXP") / getTotal("EXP")) * 100) + "%";
@@ -47,26 +56,28 @@ public class ParameterPlayer : MonoBehaviour
         hptext.text = Mathf.Floor((getCur("HP") / getTotal("HP")) * 100) + "%";
         for (int i = 0; i < 6; i++)
         {
-            statSkill[i].Initialized(getCur("TIME" + i.ToString()), getTotal("TIME" + i.ToString()));
+            statSkill[i].Initialized(0, getTotal("TIME" + i.ToString()));
         }
     }
     void Update()
     {
+        displayDamage();
         hpbar.Initialized(getCur("HP"), getTotal("HP"));
         if (getCurExp() >= getTotalExp())
         {
             levelUp();
             leveltext.text = getLevel().ToString();
-            UpdateExp(getCurExp()-getTotalExp());
+            UpdateExp((getCur("EXP") % getTotal("EXP")));
         }
+        saveStats();
     }
-    private void useSkill()
+    public void useSkill()
     {
         if (skill == -1)
         {
             return;
         }
-        Debug.Log("skill " + skill);
+        missionControl.GetComponent<MisionLoader>().skillUsed(skill);
         StartCoroutine(waitSkill(skill));
         skill = -1;
     }
@@ -81,7 +92,7 @@ public class ParameterPlayer : MonoBehaviour
         }
         waitRecSkill[stt] = false;
     }
-    private void ReadAll()  
+    public void ReadAll()
     {
         input = tmpTxt.text;
         string pattern = "\n";
@@ -149,7 +160,7 @@ public class ParameterPlayer : MonoBehaviour
         yield return null;
     }
     private void Change(string name, float cur, float total)
-    {   
+    {
         for (int i = 0; i <= line.count; i++)
         {
             if (line.name[i] == name)
@@ -161,10 +172,50 @@ public class ParameterPlayer : MonoBehaviour
         }
         StartCoroutine(reWrite());
         StartCoroutine(updateStat(name, cur, total));
+
+        Debug.Log("read");
+        ReadAll();
     }
     public void levelUp()
     {
-        Change("LV", getCur("LV") + 1, getTotal("LV"));
+        Change("LV", getCur("LV") + Mathf.Floor(getCur("EXP") / getTotal("EXP")), getTotal("LV"));
+        AddDamage("DMG0", 20);
+        if (getLevel() >= 3)
+        {
+            AddDamage("DMG1", 40);
+        }
+        if (getLevel() >= 6)
+        {
+            AddDamage("DMG3", 70);
+        }
+        if (getLevel() >= 12)
+        {
+            AddDamage("DMG5", 100);
+        }
+        displayDamage();
+    }
+    private void displayDamage()
+    {
+        if (getLevel() >= 3)
+        {
+            descriptions[0].text = "Damage " + getDamage("DMG1");
+        }
+        if (getLevel() >= 5)
+        {
+            descriptions[1].text = "Damage " + getDamage("DMG2");
+        }
+        if (getLevel() >= 6)
+        {
+            descriptions[2].text = "Damage " + getDamage("DMG3");
+        }
+        if (getLevel() >= 8)
+        {
+            descriptions[3].text = "Damage " + getDamage("DMG4");
+        }
+        if (getLevel() >= 12)
+        {
+            descriptions[4].text = "Damage " + getDamage("DMG5");
+        }
     }
     public float getCurHeath()
     {
@@ -206,28 +257,55 @@ public class ParameterPlayer : MonoBehaviour
         ReadAll();
         return getCur(name);
     }
-    public void updateDamage(string name, float curDamage)
+    public void AddDamage(string name, float addedDamage)
     {
         ReadAll();
-        Change(name, curDamage, curDamage);
+        Change(name, getCur(name) + addedDamage, getCur(name) + addedDamage);
+    }
+    public void AddHP(string name, float addedHP)
+    {
+        ReadAll();
+        float curHp = getCur(name) + addedHP;
+        if (curHp >= getTotalHealth())
+        {
+            curHp = getTotalHealth();
+        }
+        Change(name, curHp, getTotalHealth());
+    }
+    public void HPUP(string name, float addedHP)
+    {
+        ReadAll();
+        float curHp = getTotal(name) + addedHP;
+        Change(name, curHp, curHp);
+        ReadAll();
+    }
+    public float getScore()
+    {
+        return getCur("SCORE");
+    }
+    public void addScore(float score)
+    {
+        Change("SCORE", getScore() + score, getScore() + score);
     }
     public float getLevel()
     {
         return getCur("LV");
     }
-    /*
-    HP/10000/10000
-    EXP/10000/10000
-    LV/1/99
-    DMG0/100/100
-    DMG1/200/200
-    DMG2/400/400
-    DMG3/700/700
-    TIME0/1/1
-    TIME1/3/3
-    TIME2/10/10
-    TIME3/7/7
-    TIME4/15/15
-    TIME5/40/40
-    */
+
+    public void saveStats()
+    {
+        string path = Application.dataPath + "/Saves/systemSave.txt";
+        ReadAll();
+        // This text is added only once to the file.
+        if (File.Exists(path))
+        {
+            File.WriteAllText(path, input);
+        }
+        string currentScenePath = Application.dataPath + "/Saves/currentScene.txt";
+        scenePath = SceneManager.GetActiveScene().path;
+        if (File.Exists(currentScenePath))
+        {
+            File.WriteAllText(currentScenePath, scenePath);
+        }
+    }
 }

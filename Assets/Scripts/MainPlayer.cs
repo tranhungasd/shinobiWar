@@ -6,6 +6,8 @@ using System;
 
 public class MainPlayer : MonoBehaviour
 {
+    public bool choPhepDiChuyen;
+    public GameObject missionControl;
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private Vector2 direction;
@@ -39,9 +41,12 @@ public class MainPlayer : MonoBehaviour
         jump = false;
         slide = false;
         wallcling = wallClingBox.iswallcling;
+        choPhepDiChuyen = true;
     }
     void Update()
     {
+        curHealth = playerStats.getCurHeath();
+        maxHealth = playerStats.getTotalHealth();
         wallcling = wallClingBox.iswallcling;
         if (wallcling && !grounded)
         {
@@ -53,6 +58,7 @@ public class MainPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (choPhepDiChuyen == false) return;
         if (GetComponent<playerUseSkill>().isAtk) // Không thể vừa đánh vừa di chuyển
         {
             HandleMovement(0f);
@@ -174,12 +180,16 @@ public class MainPlayer : MonoBehaviour
             grounded = true;
             jump = false;
        }
+        if (other.gameObject.tag == "checkpoint")
+        {
+            missionControl.GetComponent<MisionLoader>().setLastHP(curHealth);
+        }
     }
     public void ReceivesDamage(float damage)
     {
-       curHealth -= damage;
+        curHealth -= damage;
         playerStats.UpdateHealth(curHealth);
-       
+        missionControl.GetComponent<MisionLoader>().checkDropHP(curHealth);
     }
     private void FreezeGravity()
     {

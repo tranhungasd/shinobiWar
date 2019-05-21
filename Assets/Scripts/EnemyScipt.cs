@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class EnemyScipt : MonoBehaviour
 {
-    private Animator myAnimator;   
+    public GameObject missionControl;
+    private Animator myAnimator;
     public int speed;
     public float damage;
     public float maxHealth;
@@ -23,6 +24,7 @@ public class EnemyScipt : MonoBehaviour
     private float originalPos;
     private bool playerRight;
     private int direction;
+    bool waitHit;
     private float dist;
     public float maxPlayerDist;
     public float attackRange;
@@ -30,7 +32,7 @@ public class EnemyScipt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        waitHit = true;
         playerFinder = GameObject.Find("MainPlayer");
         myAnimator = GetComponent<Animator>();
         initialPosition = transform.position;
@@ -48,18 +50,21 @@ public class EnemyScipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dist = Vector3.Distance(playerFinder.transform.position, transform.position);
-        
+        dist = Mathf.Abs(this.transform.position.x - playerFinder.GetComponent<BoxCollider2D>().bounds.center.x);
+
         if (curHealth == 0 || curHealth < 0)
         {
-            if(dist < 20)
+            missionControl.GetComponent<MissionLoader>().addKill();
+            if (dist < 20)
             {
-                playerFinder.GetComponent<ParameterPlayer>().UpdateExp(killreward);
+                playerFinder.GetComponent<ParameterPlayer>().AddExp(killreward);
             }
+            objectInfo.SetActive(false);
             Destroy(this.gameObject);
         }
         if (dist < maxPlayerDist)
         {
+
             PlayerInRange();
         }
         else if (grounded)
@@ -101,30 +106,32 @@ public class EnemyScipt : MonoBehaviour
                 }
                 break;
         }
-    } 
+    }
     private void startAttack()
     {
-        myAnimator.SetFloat("attack", 0);
+
         ActivateLayer("EnemyAttack");
         myAnimator.SetBool("sword", true);
+        myAnimator.SetFloat("attack", 1);
     }
     private IEnumerator Attack()
     {
+        myAnimator.SetBool("sword", true);
         myAnimator.SetFloat("attack", 1);
-        
-        yield return new WaitForSeconds(0.4f);
-
+        ENSwordHitbox.isHitting = true;
+        yield return new WaitForSeconds(0.5f);
         stopAttack();
     }
     private void stopAttack()
     {
         myAnimator.SetBool("sword", false);
-        ENSwordHitbox.ENswordbox.enabled = false;
         ENSwordHitbox.isHitting = false;
+        myAnimator.SetFloat("attack", 0);
+        ENSwordHitbox.ENswordbox.enabled = false;
+        waitHit = true;
         if (dist <= attackRange)
         {
-            myAnimator.SetFloat("attack", 0);
-            StartCoroutine(Attack());
+            Attack();
         }
         ActivateLayer("EnemyMove");
     }
@@ -138,7 +145,7 @@ public class EnemyScipt : MonoBehaviour
     }
     private bool detectSide(float x)
     {
-        if((x - transform.position.x) < 0)
+        if ((x - transform.position.x) < 0)
         {
             return false;
         }
@@ -149,40 +156,41 @@ public class EnemyScipt : MonoBehaviour
     }
     private void PlayerInRange()
     {
-        if (dist <= attackRange)
+        if (dist <= attackRange && waitHit == true)
         {
+            setIdle();
+            waitHit = false;
             objectInfo.SetActive(true);
             startAttack();
             ENSwordHitbox.isHitting = true;
             ENSwordHitbox.ENswordbox.enabled = true;
             StartCoroutine(Attack());
         }
-        if (detectSide(playerFinder.transform.position.x) == true)
-        {
-            setRun();
-            transform.localScale = new Vector2(1, transform.localScale.y);
-            direction = 1;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
-        }
         else
         {
-            setRun();
-            transform.localScale = new Vector2(-1, transform.localScale.y);
-            direction = -1;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+
+            if (detectSide(playerFinder.transform.position.x) == true && waitHit == true)
+            {
+                setRun();
+                transform.localScale = new Vector2(1, transform.localScale.y);
+                direction = 1;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+            }
+            else
+            {
+                if (waitHit == true)
+                {
+                    setRun();
+                    transform.localScale = new Vector2(-1, transform.localScale.y);
+                    direction = -1;
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                }
+            }
         }
-        
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "MainPlayer")
-        {
-            startAttack();
-            ENSwordHitbox.ENswordbox.enabled = true;
-            ENSwordHitbox.isHitting = true;
-            StartCoroutine(Attack());
-        }
-        if(other.gameObject.tag == "ground")
+        if (other.gameObject.tag == "ground")
         {
             grounded = true;
         }

@@ -1,0 +1,8 @@
+Kill 10 enemies in this round
+Finish this round with 6000 HP left
+Finish this round without your HP dropping below 6000
+Play through this round without using shuriken
+Play through this round without using shield
+Play through this round without using fire skill
+Play through this round without using teleport
+Play through this round without using rasengan

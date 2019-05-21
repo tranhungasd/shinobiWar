@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MiniMap2/MiniMap2.unity
     guid: e2e7ce94679226743ae74a242db5a88a
   - enabled: 1
-    path: Assets/Scenes/MiniMap2/Map2Round2.unity
+    path: Assets/Scenes/MiniMap2/Map2Round2 linh.unity
     guid: 6d6a275686fc7854597761cc0e021d64
   - enabled: 1
     path: Assets/Scenes/MiniMap2/Map2Round3.unity

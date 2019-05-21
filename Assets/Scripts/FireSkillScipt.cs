@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireSkillScipt : MonoBehaviour
 {
-   
+    public bool aquired;
     public float damage;
     private Animator myAnimator;
     private float existtime = 2;
@@ -50,7 +50,7 @@ public class FireSkillScipt : MonoBehaviour
     }
     public void UpdateDamage(float newDamage)
     {
-        Debug.Log(damage);
+        //Debug.Log(damage);
         damage = newDamage;
 
     }
